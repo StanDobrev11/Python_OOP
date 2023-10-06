@@ -6,3 +6,16 @@ I -
 D -
 
 abstraction - to show to the reader what a peace of code does without the need of explaining it.
+
+Scope and namespace:
+Namespace - the area of access of given variable.
+-builtin - abs(), sum()
+-global - all what is defined in the file or imported
+-local - all defined in class or function
+
+local namespace can use all information of the other namespaces, however without changing them.
+GLOBAL can be used in order to change global var from local scope.
+
+Scope is the region of action of the variable.
+
+
