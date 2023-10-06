@@ -18,4 +18,15 @@ GLOBAL can be used in order to change global var from local scope.
 
 Scope is the region of action of the variable.
 
+Class is a blueprint for an object that defines its nature
+Class Name is written in PascalCase.
+A class object has STATE - which are features like weight, color, name...
+and BEHAVIOUR - functions, call methods, that describe objects motion or actions.
+The __init__ method keeps all STATE data. When an object (instance) is created,
+the __init__ method is automatically called.
+The instance is a specific realization of an object of a certain class.
+self.__dict__ returns the STATE of the current instance.
+attributes is considered data attributes (STATE) and methods (BEHAVIOUR)
+
+
 
