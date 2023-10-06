@@ -1,0 +1,8 @@
+SOLID principle
+S -
+O -
+L -
+I -
+D -
+
+abstraction - to show to the reader what a peace of code does without the need of explaining it.
