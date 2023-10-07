@@ -26,3 +26,7 @@ DATA ATTRIBUTE: - stored internally and are unique to that object. THey define
 state of the object
 - class attr - shared by all instances of the class
 - instance attr - unique to each instance
+
+SPECIAL DATA ATTRIBUTES:
+__doc__ - returns string with doc for the class itself """ docstrings """
+__dict__ - returns class object attributes or class attributes and methods
