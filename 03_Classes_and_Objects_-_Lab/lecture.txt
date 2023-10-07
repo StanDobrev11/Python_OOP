@@ -22,3 +22,7 @@ value of string, otherwise will trow error
 __repr__ - machine readable representation of the user's class. It is useful
 when debbuging since it shows all variables values during debug.
 
+DATA ATTRIBUTE: - stored internally and are unique to that object. THey define
+state of the object
+- class attr - shared by all instances of the class
+- instance attr - unique to each instance

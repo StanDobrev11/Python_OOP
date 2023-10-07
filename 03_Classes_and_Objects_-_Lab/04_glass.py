@@ -8,9 +8,26 @@ filled with {ml} ml", otherwise returns "Cannot add {ml} ml"
 - info() - returns info about the glass in the format "{space_left} ml left"
 
 """
+
+
 class Glass:
+    capacity: int = 250
+
     def __init__(self):
-        pass
+        self.content: int = 0
+
+    def fill(self, refill_value: int) -> str:
+        if refill_value + self.content <= Glass.capacity:
+            self.content += refill_value
+            return f"Glass filled with {refill_value} ml"
+        return f"Cannot add {refill_value} ml"
+
+    def empty(self):
+        self.content = 0
+        return "Glass is now empty"
+
+    def info(self):
+        return f"{Glass.capacity - self.content} ml left"
 
 
 glass = Glass()
