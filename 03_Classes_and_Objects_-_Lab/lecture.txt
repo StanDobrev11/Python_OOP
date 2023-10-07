@@ -12,8 +12,13 @@ METHODS:
 
 BUILT-IN METHODS //MAGIC METHODS //DUNDER METHODS
 __init__ - called automatically when class object is initialized
+
 __str__ - custom string representation of our new class. If defined in the
 new class, it overwrites the default __str__ method. Default value of this
 method is "memory object". It is called with print() or if str() called.
-Print() is parsing all info to strings.
+Print() is parsing all info to strings. This method should have a returned
+value of string, otherwise will trow error
+
+__repr__ - machine readable representation of the user's class. It is useful
+when debbuging since it shows all variables values during debug.
 
