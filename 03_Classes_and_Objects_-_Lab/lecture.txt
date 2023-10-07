@@ -1,0 +1,19 @@
+Every custom class me define has inheritance of OBJECT. The object class has default __init__ method which will
+also be applied to our custom class if __init__ is not specifically defined.
+__init__ magic method attaches data attributes to the newly created instance where 'self'
+is actually the instance itself.
+
+Attributes are data and procedures (methods) that belong to the class. Attributes
+are DATA and METHODS.
+METHODS:
+- define the behavior of the class instance (object)
+- the instance object is passed as first argument - 'self'
+- can alter data attributes of the instance
+
+BUILT-IN METHODS //MAGIC METHODS //DUNDER METHODS
+__init__ - called automatically when class object is initialized
+__str__ - custom string representation of our new class. If defined in the
+new class, it overwrites the default __str__ method. Default value of this
+method is "memory object". It is called with print() or if str() called.
+Print() is parsing all info to strings.
+
