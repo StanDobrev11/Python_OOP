@@ -1,7 +1,7 @@
+import unittest
+
 from section import Section
 from task import Task
-
-import unittest
 
 
 class Test(unittest.TestCase):

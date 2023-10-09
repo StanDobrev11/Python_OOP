@@ -1,5 +1,5 @@
-from player import Player
 from guild import Guild
+from player import Player
 
 if __name__ == "__main__":
     player_1 = Player("George", 50, 100)

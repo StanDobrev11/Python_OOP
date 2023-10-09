@@ -1,7 +1,4 @@
-from section import Section
-from task import Task
 import unittest
-from test import Test
 
 # if __name__ == "__main__":
 #     task = Task("Make bed", "27/05/2020")

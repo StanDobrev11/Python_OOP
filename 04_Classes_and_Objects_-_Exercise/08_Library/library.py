@@ -1,13 +1,14 @@
 from typing import List, Dict
+from user import User
 
 
 class Library:
     def __init__(self):
-        self.user_records: List['class User'] = []
+        self.user_records: List[User] = []
         self.books_available: Dict[str: [str]] = {}  # {autor: [book1, book2,...],...}
         self.rented_books: Dict[str: {str: int}] = {}  # {usernames: {book names: days to return}}
 
-    def get_book(self, author: str, book_name: str, days_to_return: int, user: 'class User') -> str:
+    def get_book(self, author: str, book_name: str, days_to_return: int, user: User) -> str:
         if book_name in self.books_available[author]:
             user.books.append(book_name)
             self.books_available[author].remove(book_name)
@@ -25,7 +26,7 @@ class Library:
         except KeyError:
             pass
 
-    def return_book(self, author: str, book_name: str, user: 'class User') -> str:
+    def return_book(self, author: str, book_name: str, user: User) -> str:
         if book_name not in user.books:
             return f"{user.username} doesn't have this book in his/her records!"
 

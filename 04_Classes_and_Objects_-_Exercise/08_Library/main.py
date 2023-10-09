@@ -1,3 +1,7 @@
+# NOT OK for JUDGE with this type of imports.
+# for Judge should be "from project.library import Library"
+# However, this DOESN'T work
+
 from library import Library
 from registration import Registration
 from user import User

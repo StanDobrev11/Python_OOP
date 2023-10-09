@@ -1,5 +1,6 @@
-from pokemon import Pokemon
 from typing import List
+
+from pokemon import Pokemon
 
 
 class Trainer:

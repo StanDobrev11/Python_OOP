@@ -1,7 +1,7 @@
-from player import Player
-from guild import Guild
-
 import unittest
+
+from guild import Guild
+from player import Player
 
 
 class PlayerTest(unittest.TestCase):

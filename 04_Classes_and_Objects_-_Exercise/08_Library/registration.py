@@ -1,23 +1,27 @@
+from library import Library
+from user import User
+
+
 class Registration:
     def __init__(self):
         pass
 
     @staticmethod
-    def add_user(user: 'class User', library: 'class Library'):
+    def add_user(user: User, library: Library):
         if user in library.user_records:
             return f"User with id = {user.user_id} already registered in the library!"
 
         library.user_records.append(user)
 
     @staticmethod
-    def remove_user(user: 'class User', library: 'class Library'):
+    def remove_user(user: User, library: Library):
         if user in library.user_records:
             library.user_records.remove(user)
         else:
             return f"We could not find such user to remove!"
 
     @staticmethod
-    def change_username(user_id: int, new_username: str, library: 'class Library'):
+    def change_username(user_id: int, new_username: str, library: Library):
         try:
             user = next(filter(lambda u: u.user_id == user_id, library.user_records))
         except StopIteration:
