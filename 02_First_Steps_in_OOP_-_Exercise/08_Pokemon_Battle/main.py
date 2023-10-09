@@ -1,6 +1,6 @@
 """
 Note: For this problem, please submit a zip file containing a separate file for each of the classes, with the class
-names provided in the problem description, and include them in a module named project.
+names provided in the problem description, and include them in a module named 06_Guild_System.
 You are tasked to create two classes: a Pokemon class in the pokemon.py file and a Trainer class in the
 trainer.py file.
 The Pokemon class should receive a name (string) and health (int) upon initialization. It should also have a method
@@ -12,7 +12,7 @@ by default). The Trainer has three methods:
 o Adds the pokemon to the collection and returns "Caught {pokemon_name} with health
 {pokemon_health}". Hint: use the pokemon's details method.
 o If the pokemon is already in the collection, returns "This pokemon is already caught"
-o Hint: to import the Pokemon class, you should add "from project.pokemon import
+o Hint: to import the Pokemon class, you should add "from 06_Guild_System.pokemon import
 Pokemon"
 - release_pokemon(pokemon_name: string)
 o Checks if you have a pokemon with that name and removes it from the collection. In the end,
