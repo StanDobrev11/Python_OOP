@@ -10,3 +10,5 @@ class Teacher(Employee, Person):
 
 p = Teacher()
 print(p.teach())
+print(p.get_fired())
+print(p.sleep())

@@ -49,4 +49,13 @@ The super() method - super is the parent class. Other syntaxis =
 Person.__init__(self)
 
 
+1. Single and 2. Multi inheritance.
+Multi is divided to:
+- multiple:
+    - inherit more than 1 class. Possible in Python
+    - allows complex relationships. To specify which parent class's init to be used, use Parent.__init__(self, name, ...)
+- multilevel - if the parent class is a child to another class.
+
+
+
 
