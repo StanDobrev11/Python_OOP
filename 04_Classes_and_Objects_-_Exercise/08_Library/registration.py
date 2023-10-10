@@ -3,8 +3,6 @@ from user import User
 
 
 class Registration:
-    def __init__(self):
-        pass
 
     @staticmethod
     def add_user(user: User, library: Library):

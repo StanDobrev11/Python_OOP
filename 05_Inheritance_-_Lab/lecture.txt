@@ -1,0 +1,52 @@
+Inheritance - capability to inherit other properties
+
+1. It is used ti extend func of other classes in order to eliminate repetitive code.
+
+e.g.:
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Employee:
+    def __init__(self, name, security_number):
+        self.name = name
+        self.security_number = security_number
+
+class Teacher:
+    def __init__(self, name,security_number, children):
+        self.name = name
+        self.security_number = security_number
+        self.children = children
+
+as you can see - a lot of repetitions!!!
+All child classes should answer the question: IS THE CHILD CLASS A PARENT?
+In order to use inheritance and to avoid repetition, we need to do it like that:
+In order to use inheritance, must use super().__init__()
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def say_name(self):
+        return f"Hello, my name is {self.name}"
+
+
+class Employee(Person):
+    def __init__(self, name, age, security_number):
+        super().__init__(name, age)
+        self.security_number = security_number
+
+
+class Teacher(Employee):
+    def __init__(self, name, age, security_number, children):
+        super().__init__(name, security_number, age)
+        self.children = children
+
+2. Add feature to class w/out modifying it - create another child class
+
+
+The super() method - super is the parent class. Other syntaxis =
+Person.__init__(self)
+
+
+
