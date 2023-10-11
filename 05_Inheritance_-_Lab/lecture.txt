@@ -57,5 +57,9 @@ Multi is divided to:
 - multilevel - if the parent class is a child to another class.
 -hierarchical - when a parent class is parent to many non-connected child classes
 
+Method resolution order MRO - this is the order in which the methods should be inherited in the presence of
+multiple inheritance. used class_name.mro() to view MRO similar to BFS
+
+
 
 
