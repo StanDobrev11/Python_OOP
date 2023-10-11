@@ -1,0 +1,10 @@
+from OOP_06_Inheritance_Exercise.Zoo.project.lizard import Lizard
+from OOP_06_Inheritance_Exercise.Zoo.project.mammal import Mammal
+
+
+mammal = Mammal("Stella")
+print(mammal.__class__.__bases__[0].__name__)
+print(mammal.name)
+lizard = Lizard("John")
+print(lizard.__class__.__bases__[0].__name__)
+print(lizard.name)

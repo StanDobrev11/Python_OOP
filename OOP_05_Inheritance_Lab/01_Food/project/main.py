@@ -1,4 +1,4 @@
-from project.fruit import Fruit
+from A06_Inheritance_Exercise.project import Fruit
 
 banana = Fruit('Banana', '10/10.2023')
 

@@ -1,8 +1,8 @@
 import unittest
 
-from project.employee import Employee
-from project.person import Person
-from project.teacher import Teacher
+from A06_Inheritance_Exercise.project import Employee
+from A06_Inheritance_Exercise.project.person import Person
+from A06_Inheritance_Exercise.project import Teacher
 
 
 class Tests(unittest.TestCase):
