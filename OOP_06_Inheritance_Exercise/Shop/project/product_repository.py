@@ -16,7 +16,7 @@ class ProductRepository:
     def add(self, product: Product) -> None:
         self.products.append(product)
 
-    def find(self, product_name: str) -> Product:
+    def find(self, product_name: str) -> Product | None:
         try:
             product = next(filter(lambda n: n.name == product_name, self.products))
             return product
