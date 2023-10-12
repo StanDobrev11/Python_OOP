@@ -24,7 +24,7 @@ class Profile:
             raise ValueError("The username must be between 5 and 15 characters.")
 
     @property
-    def password(self):
+    def password(self) -> str:
         return self.__password
 
     @password.setter
