@@ -7,21 +7,31 @@ class EmailValidator:
         self.mails = mails
         self.domains = domains
 
-    def __is_name_valid(self, name):
-        return True if len(name) >= self.min_length else False
+    def __is_name_valid(self, name: str) -> bool:
+        return len(name) >= self.min_length
 
-    def __is_mail_valid(self, mail):
-        return any(True if m == mail else False for m in self.mails)
+    def __is_mail_valid(self, mail: str) -> bool:
+        # return any(True if m == mail else False for m in self.mails)
+        return mail in self.mails
 
     def __is_domain_valid(self, domain):
-        return any(True if d == domain else False for d in self.domains)
+        # return any(True if d == domain else False for d in self.domains)
+        return domain in self.domains
 
-    def validate(self, email: str):
-        name = re.findall(r"([a-zA-Z\d]+)@", email)[0]
-        mail = re.findall(r"@([a-zA-Z\d]+)", email)[0]
-        domain = re.findall(r"\.([a-zA-Z\d]+)", email)[0]
+    def validate(self, email: str) -> bool:
+        data = email.split('@')
+        name = data[0]
+        mail, domain = data[1].split('.')
 
-        return all((self.__is_name_valid(name), self.__is_mail_valid(mail), self.__is_domain_valid(domain)))
+        return self.__is_name_valid(name) \
+            and self.__is_mail_valid(mail) \
+            and self.__is_domain_valid(domain)
+
+        # name = re.findall(r"([a-zA-Z\d]+)@", email)[0]
+        # mail = re.findall(r"@([a-zA-Z\d]+)", email)[0]
+        # domain = re.findall(r"\.([a-zA-Z\d]+)", email)[0]
+
+        # return all((self.__is_name_valid(name), self.__is_mail_valid(mail), self.__is_domain_valid(domain)))
 
 
 # mails = ["gmail", "softuni"]

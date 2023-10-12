@@ -19,3 +19,10 @@ setter - validator for controlled set of protected/private attributes
 
 decorators are used for GET @property, for set @varname.setter which are connected to the __init__ method
 and are called automatically
+
+
+built-in functions to access attributes
+getattr
+hasattr
+setattr
+delattr
