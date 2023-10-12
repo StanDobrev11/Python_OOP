@@ -1,0 +1,21 @@
+Encapsulation - packing data/function into single component in order to prevent accidental modification of the data
+
+All in python is public by default. All can be accessed outside of the class definition. Generally, encapsulation
+in python is done by convention
+
+Access modifiers:
+using (_) -> means protected = can be vied w/out modified. Can be modified in the class or child class
+
+
+or (__) before the variable/method = hidden. This is accessed by {class instance}._{class_name}.{instance variable}.
+It is only accessible in the class
+
+public  a = 5 - can be viewed and modified everywhere
+protected _a = 5 - can be viewed but can only be modified in the class and child classes
+private __a = 5 - cannot be viewed and can only be modified in the class
+
+getter - method that provides controlled access to private variables.
+setter - validator for controlled set of protected/private attributes
+
+decorators are used for GET @property, for set @varname.setter which are connected to the __init__ method
+and are called automatically

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from project.product import Product
 
 
@@ -16,7 +18,8 @@ class ProductRepository:
     def add(self, product: Product) -> None:
         self.products.append(product)
 
-    def find(self, product_name: str) -> Product | None:
+    def find(self, product_name: str) -> Optional[Product]:
+        # use Optional when the other value is "None", when is not, use '|' or 'or' operators.
         try:
             product = next(filter(lambda n: n.name == product_name, self.products))
             return product
