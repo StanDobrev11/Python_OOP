@@ -81,7 +81,8 @@ class Zoo:
         for c in cheetahs:
             result += f"{c}\n"
 
-        return result[:-1]
+        # return result[:-1]
+        return result.strip()
 
     def workers_status(self) -> str:
         result = f"You have {len(self.workers)} workers\n"
