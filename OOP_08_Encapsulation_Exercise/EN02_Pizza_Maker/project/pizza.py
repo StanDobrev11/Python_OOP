@@ -55,6 +55,6 @@ class Pizza:
 
     def calculate_total_weight(self) -> float or int:
         """Returns the total weight of the pizza (dough's weight and toppings' weight)"""
-        toppings_weight = sum(weight for weight in self.toppings.values())
+        toppings_weight = sum(self.toppings.values())
         dough_weight = self.dough.weight
         return toppings_weight + dough_weight
