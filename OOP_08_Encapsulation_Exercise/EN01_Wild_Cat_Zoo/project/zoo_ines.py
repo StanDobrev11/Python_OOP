@@ -77,9 +77,10 @@ class Zoo:
             result += f"{t}\n"
 
         result += f"----- {len(cheetahs)} Cheetahs:\n"
-        result += "\n".join(c.__repr__() for c in cheetahs)
+        for c in cheetahs:
+            result += f"{c}\n"
 
-        return result
+        return result[:-1]
 
     def workers_status(self) -> str:
         result = f"You have {len(self.workers)} workers\n"
