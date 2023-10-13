@@ -26,13 +26,15 @@ for i in range(len(animals)):
 # Adding all workers
 for worker in workers:
     print(zoo.hire_worker(worker))
+
+# Tending animals
+print(zoo.tend_animals())
+# Paying keepers
+
+print(zoo.pay_workers())
 print()
-#     # Tending animals
-# print(zoo.tend_animals())
-# # Paying keepers
-# print(zoo.pay_workers())
-# # Fireing worker
-# print(zoo.fire_worker("Adam"))
-# # Printing statuses
-# print(zoo.animals_status())
-# print(zoo.workers_status())
+# Fireing worker
+print(zoo.fire_worker("Adam"))
+# Printing statuses
+print(zoo.animals_status())
+print(zoo.workers_status())
