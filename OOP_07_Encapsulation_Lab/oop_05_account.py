@@ -4,12 +4,13 @@ class Account:
         self.__pin = pin
         self.balance = balance
 
-    def get_id(self, pin):
+    def get_id(self, pin: int) -> str | int:
         if pin != self.__pin:
             return "Wrong pin"
+
         return self.__id
 
-    def change_pin(self, old_pin, new_pin):
+    def change_pin(self, old_pin: int, new_pin: int) -> str:
         if old_pin != self.__pin:
             return "Wrong pin"
 
