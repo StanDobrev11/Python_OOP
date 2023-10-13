@@ -1,4 +1,6 @@
 class Animal:
+    ttl_amount_for_care = 0
+
     def __init__(self, name: str, gender: str, age: int, money_for_care: int) -> None:
         self.name = name
         self.gender = gender
