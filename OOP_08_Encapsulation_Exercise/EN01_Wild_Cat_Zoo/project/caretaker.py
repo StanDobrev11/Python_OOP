@@ -1,2 +1,5 @@
-class caretaker.py:
-  def __init__(self):      pass
+from project.worker import Worker
+
+
+class Caretaker(Worker):
+    pass

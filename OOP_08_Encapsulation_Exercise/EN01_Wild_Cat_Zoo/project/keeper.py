@@ -1,2 +1,5 @@
-class keeper.py:
-  def __init__(self):      pass
+from project.worker import Worker
+
+
+class Keeper(Worker):
+    pass

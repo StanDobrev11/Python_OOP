@@ -5,5 +5,5 @@ class Animal:
         self.age = age
         self.money_for_care = money_for_care
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}, Gender: {self.gender}"
