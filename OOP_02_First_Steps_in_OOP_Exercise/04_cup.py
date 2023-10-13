@@ -5,7 +5,7 @@ The class should have two methods:
 • fill(quantity) that will increase the amount of liquid in the cup with the given quantity (if there is
 space in the cup, otherwise ignore).
 • status() that will return the amount of free space left in the cup.
-Submit only the class in the judge system. Do not forget to test your code.
+Submit only the class in the judge system. Do not forget to EN01_Wild_Cat_Zoo_INES your code.
 """
 
 

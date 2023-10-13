@@ -34,7 +34,7 @@ def add_content(args):
         print('An error occurred')
 
 
-def replace_content(args):  # Replace-test.txt-^-&
+def replace_content(args):  # Replace-EN01_Wild_Cat_Zoo_INES.txt-^-&
     filename, old_str, new_str = args
     try:
         with open(get_filepath(filename), 'r+') as file:

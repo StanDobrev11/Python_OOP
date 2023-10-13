@@ -10,9 +10,9 @@ class Zoo:
         self.__animal_capacity = animal_capacity
         self.__workers_capacity = workers_capacity
         self.animals_by_class = {}
-        self.animals: list[ClassVar] = []
+        self.animals: list[Animal] = []
         self.workers_by_class = {}
-        self.workers: list[ClassVar] = []
+        self.workers: list[Worker] = []
 
     def add_animal(self, animal: Animal, price: int) -> str:
         """Adds animal to the zoo list if certain conditions are met"""
@@ -82,18 +82,22 @@ class Zoo:
 
     def animals_status(self) -> str:
         output_data = f"You have {len(self.animals)} animals\n"
-        for class_name, animals in self.animals_by_class.items():
-            output_data += f"----- {len(animals)} {class_name}s:" + '\n'
-            for animal in animals:
-                output_data += animal.__str__() + "\n"
+        output_data += f"----- {len(self.animals_by_class['Lion'])} Lions:\n"
+        output_data += "\n".join(animal.__repr__() for animal in self.animals_by_class['Lion'])
+        output_data += '\n' + f"----- {len(self.animals_by_class['Tiger'])} Tigers:\n"
+        output_data += "\n".join(animal.__repr__() for animal in self.animals_by_class['Tiger'])
+        output_data += '\n' + f"----- {len(self.animals_by_class['Cheetah'])} Cheetahs:\n"
+        output_data += "\n".join(animal.__repr__() for animal in self.animals_by_class['Cheetah'])
 
         return output_data
 
     def workers_status(self) -> str:
-        output_data = f"You have {len(self.workers)} workers"
-        for class_name, workers in self.workers_by_class.items():
-            output_data += f"----- {len(workers)} {class_name}s:\n"
-            for worker in workers:
-                output_data += worker.__str__() + '\n'
+        output_data = f"You have {len(self.workers)} workers\n"
+        output_data += f"----- {len(self.workers_by_class['Keeper'])} Keepers:\n"
+        output_data += "\n".join(worker.__repr__() for worker in self.workers_by_class['Keeper'])
+        output_data += '\n' + f"----- {len(self.workers_by_class['Caretaker'])} Caretakers:\n"
+        output_data += "\n".join(worker.__repr__() for worker in self.workers_by_class['Caretaker'])
+        output_data += '\n' + f"----- {len(self.workers_by_class['Vet'])} Vets:\n"
+        output_data += "\n".join(worker.__repr__() for worker in self.workers_by_class['Vet'])
 
         return output_data
