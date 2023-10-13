@@ -1,4 +1,5 @@
 from project.animal import Animal
+from project.vet import Vet
 from project.worker import Worker
 from typing import List
 
@@ -84,7 +85,7 @@ class Zoo:
 
     def workers_status(self) -> str:
         result = f"You have {len(self.workers)} workers\n"
-        vets = [w for w in self.workers if w.__class__.__name__ == 'Vet']
+        vets = [w for w in self.workers if isinstance(w, Vet)]
         keepers = [w for w in self.workers if w.__class__.__name__ == 'Keeper']
         caretakers = [w for w in self.workers if w.__class__.__name__ == 'Caretaker']
 
