@@ -1,6 +1,6 @@
 class Worker:
     ttl_salaries = 0
-
+    ttl_workers = 0
     def __init__(self, name: str, age: int, salary: int) -> None:
         self.name = name
         self.age = age

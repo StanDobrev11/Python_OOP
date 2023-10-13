@@ -1,10 +1,4 @@
 from project.animal import Animal
-from project.caretaker import Caretaker
-from project.cheetah import Cheetah
-from project.keeper import Keeper
-from project.lion import Lion
-from project.tiger import Tiger
-from project.vet import Vet
 from project.worker import Worker
 from typing import ClassVar
 
@@ -41,15 +35,15 @@ class Zoo:
 
     def hire_worker(self, worker: Worker) -> str:
         """Add help to the zoo - hire workers"""
-        if self.__workers_capacity <= 0:
+        if self.__workers_capacity == Worker.ttl_workers:
             Worker.ttl_salaries -= worker.salary
             return "Not enough space for worker"
 
         if worker.__class__.__name__ not in self.workers_by_class:
             self.workers_by_class[worker.__class__.__name__] = []
 
+        Worker.ttl_workers += 1
         self.workers_by_class[worker.__class__.__name__].append(worker)
-        self.__workers_capacity -= 1
         self.workers.append(worker)
         return f"{worker.name} the {worker.__class__.__name__} hired successfully"
 
@@ -60,6 +54,7 @@ class Zoo:
             self.workers_by_class[worker.__class__.__name__].remove(worker)
             self.workers.remove(worker)
             Worker.ttl_salaries -= worker.salary
+            Worker.ttl_workers -= 1
             return f"{worker_name} fired successfully"
 
         except IndexError:
@@ -88,17 +83,17 @@ class Zoo:
     def animals_status(self) -> str:
         output_data = f"You have {len(self.animals)} animals\n"
         for class_name, animals in self.animals_by_class.items():
-            output_data += f"----- {len(animals)} {class_name}\n"
+            output_data += f"----- {len(animals)} {class_name}s:" + '\n'
             for animal in animals:
                 output_data += animal.__str__() + "\n"
 
         return output_data
 
     def workers_status(self) -> str:
-        output_data = f"You have {len(self.workers)} workers\n"
+        output_data = f"You have {len(self.workers)} workers"
         for class_name, workers in self.workers_by_class.items():
-            output_data += f"----- {len(workers)} {class_name}\n"
+            output_data += f"----- {len(workers)} {class_name}s:\n"
             for worker in workers:
-                output_data += worker.__str__() + "\n"
+                output_data += worker.__str__() + '\n'
 
         return output_data
