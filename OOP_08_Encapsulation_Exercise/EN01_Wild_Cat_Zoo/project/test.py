@@ -4,7 +4,7 @@ from project.cheetah import Cheetah
 from project.keeper import Keeper
 from project.vet import Vet
 from project.caretaker import Caretaker
-from project.zoo import Zoo
+from project.zoo_ines import Zoo
 
 import unittest
 

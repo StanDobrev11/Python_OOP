@@ -4,7 +4,7 @@ from project.keeper import Keeper
 from project.lion import Lion
 from project.tiger import Tiger
 from project.vet import Vet
-from project.zoo import Zoo
+from project.zoo_ines import Zoo
 
 zoo = Zoo("Zootopia", 3000, 5, 8)
 # Animals creation
