@@ -24,7 +24,7 @@ class Shop:
         self.items[item_name] += 1
         return f"{item_name} added to the shop"
 
-    def remove_item(self, item_name: str, amount: int):
+    def remove_item(self, item_name: str, amount: int) -> str:
         if item_name in self.items:
             if self.items[item_name] - amount >= 0:
                 self.items[item_name] -= amount
