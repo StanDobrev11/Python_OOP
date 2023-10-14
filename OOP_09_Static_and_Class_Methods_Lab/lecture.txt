@@ -1,0 +1,8 @@
+Static methods = @staticmethod
+ It knows nothing about the class or the instance!!
+ Cannot modify object state or class state.
+ Easily could be made as function.
+ It is kept in the class only to maintain the consept of the OOP and to pack
+similar methods within the class
+ Can be called through the instance or the class. However, it is better to
+be called through the class.

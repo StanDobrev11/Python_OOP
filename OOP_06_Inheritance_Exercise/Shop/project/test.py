@@ -1,7 +1,7 @@
 import unittest
 
 from project.drink import Drink
-from project.food import Food
+from project.food.food import Food
 from project.product import Product
 from project.product_repository import ProductRepository
 
