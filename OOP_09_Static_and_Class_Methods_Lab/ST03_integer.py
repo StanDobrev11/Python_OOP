@@ -4,9 +4,11 @@ class Integer:
 
     @staticmethod
     def is_roman_numeral(numeral):
-
-        Integer.convert_roman_to_int(numeral)
-        return True
+        try:
+            Integer.convert_roman_to_int(numeral)
+            return True
+        except KeyError:
+            return False
 
     @staticmethod
     def convert_roman_to_int(numeral):
@@ -22,25 +24,11 @@ class Integer:
             "M": 1000,
         }
         result_value = 0
-        numeral = list(numeral)[::-1]
-        for idx, current_letter in enumerate(numeral):
-            try:
-                previous_letter_idx = idx - 1 if idx > 0 else idx
-                previous_letter = numeral[previous_letter_idx]
-                next_letter = numeral[idx + 1]
-                if mapper[current_letter] < mapper[previous_letter]:
-                    continue
-
-                if mapper[current_letter] <= mapper[next_letter]:
-                    result_value += mapper[current_letter]
-                else:
-                    result_value += mapper[current_letter] - mapper[next_letter]
-            except IndexError:
-                if mapper[current_letter] < mapper[numeral[idx - 1]]:
-                    pass
-                else:
-                    result_value += mapper[current_letter]
-
+        for i in range(len(numeral)):
+            if i > 0 and mapper[numeral[i]] > mapper[numeral[i - 1]]:
+                result_value += mapper[numeral[i]] - 2 * mapper[numeral[i - 1]]
+            else:
+                result_value += mapper[numeral[i]]
         return result_value
 
     @classmethod
@@ -62,10 +50,9 @@ class Integer:
         else:
             return "wrong type"
 
-
-first_num = Integer(10)
-print(first_num.value)
-second_num = Integer.from_roman("IV")
-print(second_num.value)
-print(Integer.from_float("2.6"))
-print(Integer.from_string(2.6))
+# first_num = Integer(10)
+# print(first_num.value)
+# second_num = Integer.from_roman("IV")
+# print(second_num.value)
+# print(Integer.from_float("2.6"))
+# print(Integer.from_string(2.6))
