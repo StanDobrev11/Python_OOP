@@ -1,5 +1,5 @@
 import unittest
-from ST01_photo_album import PhotoAlbum
+from E01_photo_album import PhotoAlbum
 
 
 class TestsPhotoAlbum(unittest.TestCase):
