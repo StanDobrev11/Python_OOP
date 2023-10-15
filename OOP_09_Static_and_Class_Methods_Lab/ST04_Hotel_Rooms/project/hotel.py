@@ -36,5 +36,5 @@ class Hotel:
     def status(self) -> str:
         result = f"Hotel {self.name} has {self.guests} total guests\n"
         result += f"Free rooms: {', '.join(str(r.number) for r in self.rooms if not r.is_taken)}\n"
-        result += f"Taken rooms: {', '.join(str(r.number) for r in self.rooms if r.is_taken)}"
+        result += f"Taken rooms: {', '.join(str(r.number) for r in filter(lambda room: room.is_taken, self.rooms))}"
         return result
