@@ -1,4 +1,4 @@
-from project.hotel import Hotel
+from project.hotel_ines import Hotel
 from project.room import Room
 
 hotel = Hotel.from_stars(5)
