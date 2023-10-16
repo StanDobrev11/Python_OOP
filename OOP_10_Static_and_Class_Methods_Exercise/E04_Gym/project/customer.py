@@ -6,12 +6,11 @@ class Customer:
         self.address = address
         self.email = email
         self.id = self.get_next_id()
+        Customer.id += 1
 
     @staticmethod
     def get_next_id():
-        next_id = Customer.id
-        Customer.id += 1
-        return next_id
+        return Customer.id
 
     def __repr__(self) -> str:
         return f"Customer <{self.id}> {self.name}; Address: {self.address}; Email: {self.email}"
