@@ -11,8 +11,6 @@ class MovieWorld:
         self.name = name
         self.customers: List[Customer] = []
         self.dvds: List[DVD] = []
-        self.__dvd_capacity = 15
-        self.__customer_capacity = 10
 
     @staticmethod
     def dvd_capacity():
