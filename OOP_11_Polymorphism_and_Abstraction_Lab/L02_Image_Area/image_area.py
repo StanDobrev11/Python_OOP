@@ -3,25 +3,25 @@ class ImageArea:
         self.width = width
         self.height = height
 
-    def get_area(self):
+    def get_area(self) -> int:
         return self.width * self.height
 
-    def __gt__(self, other):
+    def __gt__(self, other: "ImageArea") -> bool:
         return self.get_area() > other.get_area()
 
-    def __ge__(self, other):
+    def __ge__(self, other: "ImageArea") -> bool:
         return self.get_area() >= other.get_area()
 
-    def __lt__(self, other):
+    def __lt__(self, other: "ImageArea") -> bool:
         return self.get_area() < other.get_area()
 
-    def __le__(self, other):
+    def __le__(self, other: "ImageArea") -> bool:
         return self.get_area() <= other.get_area()
 
-    def __eq__(self, other):
+    def __eq__(self, other: "ImageArea") -> bool:
         return self.get_area() == other.get_area()
 
-    def __ne__(self, other):
+    def __ne__(self, other: "ImageArea") -> bool:
         return self.get_area() != other.get_area()
 
 
@@ -35,3 +35,4 @@ print(a1 >= a3)
 print(a1 < a3)
 print(a1 <= a3)
 print(a1 == a3)
+print()
