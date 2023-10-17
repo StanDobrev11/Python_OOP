@@ -1,0 +1,34 @@
+Polymorphism - MANY FORMS
+ If we need to check object isinstance to a certain class, this means that
+ the code could have been written better!!!!
+ We have 3 classes of dif shapes with respective diff methods of calculating
+ their perimeters. In order to call each method, we need to write if-elif-else
+ checks for each class and at later stage if we decide to implement another
+ class, then we need to add additional if check in order to call the method of
+ the newly added class.
+
+ To avoid all this we use polymorphism. We implement abstract naming of the method
+ by creating parent class and child class inherits parent methods with the common name
+
+type check is required w/out polymorphism
+
+Python does not support compile time or method overloading
+This means that if we have two func with same name, the last defined
+will be enforced once called.
+
+DUCK TYPING
+Type system in dynamic languages not used in OOP. The common between the
+classes is the same method names. But the classes have nothing else in common
+
+Abstractions
+iit is closely related to polymorphism in order to enforce implementation of
+base class methods to its child
+
+Abstract class is a class that will never be used to create instances.
+
+In order to implement in, one must import ABC from abc and then abstractmethod
+
+from abc import ABC, abstractmethod
+Thed to inherit ABC of the base class and decorate at least one method with
+the decorator @abstractmethod
+If the class is abstract cannot initiate instances anymore
