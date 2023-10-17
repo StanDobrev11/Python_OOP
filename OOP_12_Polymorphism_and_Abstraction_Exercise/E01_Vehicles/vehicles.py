@@ -10,7 +10,7 @@ class Vehicle(ABC):
     def drive(self, distance: int) -> None:
         """ drive a given distance and reduce fuel as per fuel_consumption * distance driven"""
 
-    @abstractmethod
+    # @abstractmethod
     def refuel(self, fuel: int) -> None:
         """refuel with a given amount of fuel"""
 
@@ -23,7 +23,7 @@ class Car(Vehicle):
         if self.fuel_quantity >= ttl_consumption:
             self.fuel_quantity -= ttl_consumption
 
-    def refuel(self, fuel: int):
+    def refuel(self, fuel: int) -> None:
         self.fuel_quantity += fuel
 
 
@@ -36,5 +36,5 @@ class Truck(Vehicle):
         if self.fuel_quantity >= ttl_consumption:
             self.fuel_quantity -= ttl_consumption
 
-    def refuel(self, fuel: int):
+    def refuel(self, fuel: int) -> None:
         self.fuel_quantity += fuel - fuel * self.FUEL_LOST_DUE_TO_PUNCTURE
