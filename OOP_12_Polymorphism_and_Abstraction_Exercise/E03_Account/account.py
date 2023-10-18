@@ -5,16 +5,11 @@ class Account:
     def __init__(self, owner: str, amount: int = 0) -> None:
         self.owner = owner
         self.amount = amount
-        self.balance = amount
         self._transactions: List[int] = []
 
     @property
     def balance(self) -> int:
-        return self._balance
-
-    @balance.setter
-    def balance(self, value) -> None:
-        self._balance = value
+        return self.amount + sum(self._transactions)
 
     def add_transaction(self, transaction_amount: int) -> str:
         if not isinstance(transaction_amount, int):
@@ -27,7 +22,6 @@ class Account:
         if new_balance < 0:
             raise ValueError("sorry cannot go in debt!")
 
-        self.balance = new_balance
         self._transactions.append(transaction_amount)
         return f"New balance: {self.balance}"
 
@@ -47,13 +41,13 @@ class Account:
         return self._transactions[item_idx]
 
     def __gt__(self, other: "Account") -> bool:
-        return self._balance > other.balance
+        return self.balance > other.balance
 
     def __ge__(self, other: "Account") -> bool:
-        return self._balance >= other.balance
+        return self.balance >= other.balance
 
     def __eq__(self, other: "Account") -> bool:
-        return self._balance == other.balance
+        return self.balance == other.balance
 
     def __add__(self, other: "Account") -> "Account":
         new_instance = Account(f"{self.owner}&{other.owner}", sum([self.amount, other.amount]))
