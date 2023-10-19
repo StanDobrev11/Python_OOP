@@ -1,6 +1,3 @@
-from typing import Dict
-
-from project.formula_teams.formula_team import FormulaTeam
 from project.formula_teams.mercedes_team import MercedesTeam
 from project.formula_teams.red_bull_team import RedBullTeam
 
