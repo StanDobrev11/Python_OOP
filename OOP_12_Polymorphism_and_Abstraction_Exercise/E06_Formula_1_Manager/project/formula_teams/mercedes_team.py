@@ -17,6 +17,3 @@ class MercedesTeam(FormulaTeam):
         self.add_revenue_to_budget(race_revenue)
 
         return f"The revenue after the race is {race_revenue}$. Current budget {self.budget}$"
-
-    def add_revenue_to_budget(self, race_revenue: int) -> None:
-        self.budget += race_revenue

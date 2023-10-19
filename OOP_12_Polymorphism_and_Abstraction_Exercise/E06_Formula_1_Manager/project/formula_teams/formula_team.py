@@ -21,6 +21,9 @@ class FormulaTeam(ABC):
     def calculate_revenue_after_race(self, race_pos: int) -> int:
         pass
 
-    @abstractmethod
-    def add_revenue_to_budget(self, race_pos: int) -> str:
-        pass
+    @classmethod
+    def create_team(cls, budget: int):
+        return cls(budget)
+
+    def add_revenue_to_budget(self, race_revenue: int) -> None:
+        self.budget += race_revenue
