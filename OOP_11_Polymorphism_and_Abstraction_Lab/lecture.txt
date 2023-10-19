@@ -32,3 +32,4 @@ from abc import ABC, abstractmethod
 Thed to inherit ABC of the base class and decorate at least one method with
 the decorator @abstractmethod
 If the class is abstract cannot initiate instances anymore
+The abstractmethod defined in the ABC class, will not have any properties, should have name only.
