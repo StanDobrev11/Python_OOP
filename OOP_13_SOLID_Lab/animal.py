@@ -6,6 +6,9 @@ class Animal:
         return self.species
 
 
+class Cow(Animal):
+    pass
+
 def animal_sound(animals: list):
     for animal in animals:
         if animal.species == 'cat':
@@ -14,7 +17,7 @@ def animal_sound(animals: list):
             print('woof-woof')
 
 
-animals = [Animal('cat'), Animal('dog')]
+animals = [Animal('cat'), Animal('dog'), Animal('cow')]
 animal_sound(animals)
 
 ## добавете ново животно и рефакторирайте кода да работи без да се налага да се правят промени по него

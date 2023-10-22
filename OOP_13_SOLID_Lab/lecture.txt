@@ -10,3 +10,23 @@ have only one reason to change
 
 OPEN/CLOSE
 A class should be open of extension but closed for modification
+
+
+LISKOV
+
+- Extends polymorphism // functionalities of class and inheritance
+- Must nore remove base class behavior
+
+Design Smell Violations
+1. If the code is checking the type of class
+2. Overridden methods change their behaviour
+3. Override a method of super class by an empty method
+4. Base class depends on its subtypes
+
+
+INTERFACE SEGREGATION
+
+- multiple inheritance
+- use of mix-ins
+
+
