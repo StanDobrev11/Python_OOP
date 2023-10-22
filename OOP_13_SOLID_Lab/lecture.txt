@@ -1,0 +1,12 @@
+S - Single responsibility
+O - Open/closed principle
+L - Liskov substitution
+I - Interface segregation
+D - Dependency inversion
+
+SINGLE RESPONSIBILITY
+Each class is responsible for only one thing and should
+have only one reason to change
+
+OPEN/CLOSE
+A class should be open of extension but closed for modification
