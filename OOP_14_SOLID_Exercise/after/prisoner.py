@@ -1,7 +1,15 @@
 import copy
+from abc import ABC, abstractmethod
 
-class Person:
 
+class Person(ABC):
+
+    @abstractmethod
+    def __init__(self, position):
+        self.position = position
+
+
+class FreePerson(Person):
     def __init__(self, position):
         self.position = position
 
@@ -16,9 +24,8 @@ class Prisoner(Person):
     PRISON_LOCATION = [3, 3]
 
     def __init__(self):
-        super(Prisoner, self).__init__(copy.copy(self.PRISON_LOCATION))
+        super().__init__(position=copy.copy(Prisoner.PRISON_LOCATION))
         self.is_free = False
-
 
 
 prisoner = Prisoner()
@@ -32,3 +39,10 @@ except:
 
 print(f"The location of the prison: {prisoner.PRISON_LOCATION}")
 print(f"The current position of the prisoner: {prisoner.position}")
+
+"""
+The prisoner trying to walk to north by 10 and 
+east by -3.
+The location of the prison: (3, 3)
+The current position of the prisoner: (3, 3)
+"""
