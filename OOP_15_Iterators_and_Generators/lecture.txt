@@ -1,0 +1,6 @@
+In order a custom class object to be iterable, we need to implement the iterator protocol, i.e to implement
+__iter__() and __next__() methods.
+The created iterators are depleted once passed over using __next__() methods.
+
+Generator is a simple function that returns iterator object
+
