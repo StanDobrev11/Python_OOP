@@ -5,8 +5,8 @@ class Computer(ABC):
     def __init__(self, manufacturer: str, model: str):
         self.manufacturer = manufacturer
         self.model = model
-        self.processor = None
-        self.ram = None
+        self.__processor = None
+        self.__ram = None
         self.price = None
 
     @property

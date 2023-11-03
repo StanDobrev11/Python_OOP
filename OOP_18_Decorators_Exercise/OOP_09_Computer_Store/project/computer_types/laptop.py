@@ -21,7 +21,27 @@ class Laptop(Computer):
             raise ValueError(f"{processor} is not compatible with laptop {self.manufacturer} {self.model}!")
         if ram not in self.__class__._ram_prices:
             raise ValueError(f"{ram}GB RAM is not compatible with laptop {self.manufacturer} {self.model}!")
-        self.processor = processor
-        self.ram = ram
+        self.__processor = processor
+        self.__ram = ram
         self.update_price()
         return f"Created {self.manufacturer} {self.model} with {self.processor} and {self.ram}GB RAM for {self.price}$."
+
+    @property
+    def processor(self):
+        return self.__processor
+
+    @processor.setter
+    def processor(self, value):
+        if value not in self.__class__._processors_prices:
+            raise ValueError(f"{value} is not compatible with laptop {self.manufacturer} {self.model}!")
+        self.__processor = value
+
+    @property
+    def ram(self):
+        return self.__ram
+
+    @ram.setter
+    def ram(self, value):
+        if value not in self.__class__._ram_prices:
+            raise ValueError(f"{value}GB RAM is not compatible with laptop {self.manufacturer} {self.model}!")
+        self.__ram = value
