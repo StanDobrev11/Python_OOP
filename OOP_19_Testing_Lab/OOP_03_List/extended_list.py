@@ -40,3 +40,6 @@ class IntegerList:
  
     def get_index(self, el):
         return self.get_data().index(el)
+if __name__ == '__main__':
+    il = IntegerList(1, 2, 3)
+    print()
