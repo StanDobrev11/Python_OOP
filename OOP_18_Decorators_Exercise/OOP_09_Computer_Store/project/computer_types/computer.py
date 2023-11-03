@@ -14,23 +14,28 @@ class Computer(ABC):
 
     @property
     @abstractmethod
-    def processor(self):
-        ...
-
-    @processor.setter
-    @abstractmethod
-    def processor(self, value):
+    def type(self):
         ...
 
     @property
-    @abstractmethod
+    def processor(self):
+        return self.__processor
+
+    @processor.setter
+    def processor(self, value):
+        if value not in self.__class__._processors_prices and value is not None:
+            raise ValueError(f"{value} is not compatible with {self.type} {self.manufacturer} {self.model}!")
+        self.__processor = value
+
+    @property
     def ram(self):
-        ...
+        return self.__ram
 
     @ram.setter
-    @abstractmethod
     def ram(self, value):
-        ...
+        if value not in self.__class__._ram_prices and value is not None:
+            raise ValueError(f"{value}GB RAM is not compatible with {self.type} {self.manufacturer} {self.model}!")
+        self.__ram = value
 
     @property
     def manufacturer(self) -> str:
@@ -60,7 +65,7 @@ class Computer(ABC):
         self.processor = processor
         self.ram = ram
         self.update_price()
-        return f"Created {self.manufacturer} {self.model} with {self.processor} and {self.ram}GB RAM for {self.price}$."
+        return f"Created {self} for {self.price}$."
 
     def __repr__(self) -> str:
         return f"{self.manufacturer} {self.model} with {self.processor} and {self.ram}GB RAM"

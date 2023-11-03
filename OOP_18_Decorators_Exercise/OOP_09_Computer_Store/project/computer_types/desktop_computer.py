@@ -14,21 +14,5 @@ class DesktopComputer(Computer):
                    range(1, int(math.log(_max_ram_capacity * 2, 2)))}
 
     @property
-    def processor(self):
-        return self.__processor
-
-    @processor.setter
-    def processor(self, value):
-        if value not in self.__class__._processors_prices and value is not None:
-            raise ValueError(f"{value} is not compatible with desktop computer {self.manufacturer} {self.model}!")
-        self.__processor = value
-
-    @property
-    def ram(self):
-        return self.__ram
-
-    @ram.setter
-    def ram(self, value):
-        if value not in self.__class__._ram_prices and value is not None:
-            raise ValueError(f"{value}GB RAM is not compatible with desktop computer {self.manufacturer} {self.model}!")
-        self.__ram = value
+    def type(self):
+        return "desktop computer"
