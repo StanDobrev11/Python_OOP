@@ -59,6 +59,32 @@ class ListTest(unittest.TestCase):
         self.assertEqual(type(context.exception), IndexError)
         self.assertEqual(str(context.exception), "Index is out of range")
 
+    def test_insert_with_proper_index(self):
+        il = IntegerList(1, 2, 3)
+        il.insert(0, 0)
+        self.assertEqual(il.get_data(), [0, 1, 2, 3])
+
+    def test_insert_with_incorrect_index(self):
+        il = IntegerList(1, 2, 3)
+        with self.assertRaises(IndexError) as context:
+            il.insert(4, 4)
+        self.assertEqual(type(context.exception), IndexError)
+        self.assertEqual(str(context.exception), "Index is out of range")
+
+    def test_insert_with_non_integer_element(self):
+        il = IntegerList(1, 2, 3)
+        with self.assertRaises(ValueError) as context:
+            il.insert(0, 'string')
+        self.assertEqual(type(context.exception), ValueError)
+        self.assertEqual(str(context.exception), "Element is not Integer")
+
+    def test_get_biggest(self):
+        il = IntegerList(1, 2, 3)
+        self.assertEqual(il.get_biggest(), 3)
+
+    def test_get_index(self):
+        il = IntegerList(1, 2, 3)
+        self.assertEqual(il.get_index(3), 2)
 
 if __name__ == '__main__':
     unittest.main()
