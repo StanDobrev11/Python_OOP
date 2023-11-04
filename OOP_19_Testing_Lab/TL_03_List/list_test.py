@@ -1,4 +1,4 @@
-from OOP_19_Testing_Lab.OOP_03_List.extended_list import IntegerList
+from OOP_19_Testing_Lab.TL_03_List.extended_list import IntegerList
 
 import unittest
 
