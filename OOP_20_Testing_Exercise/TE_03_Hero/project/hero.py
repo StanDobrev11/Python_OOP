@@ -44,3 +44,9 @@ class Hero:
         return f"Hero {self.username}: {self.level} lvl\n" \
                f"Health: {self.health}\n" \
                f"Damage: {self.damage}\n"
+
+if __name__ == '__main__':
+    my_hero = Hero('Ivan', 3, 50, 100)
+    enemy = Hero('Cent', 4, 55, 110)
+
+    print()
