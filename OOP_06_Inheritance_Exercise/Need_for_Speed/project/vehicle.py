@@ -2,7 +2,7 @@ class Vehicle:
     DEFAULT_FUEL_CONSUMPTION: float = 1.25
 
     def __init__(self, fuel: float, horse_power: int) -> None:
-        self.fuel = fuel  # quantity of fuel in a specific vehicle
+        self.fuel = fuel  # quantity of fuel in a specific TE_02_Vehicle
         self.horse_power = horse_power
         self.fuel_consumption = self.__class__.DEFAULT_FUEL_CONSUMPTION  # fuel consumption per kilometer
 

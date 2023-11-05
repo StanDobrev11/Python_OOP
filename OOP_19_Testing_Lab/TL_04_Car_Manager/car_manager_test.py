@@ -2,7 +2,7 @@ from OOP_19_Testing_Lab.TL_04_Car_Manager.car_manager import Car
 import unittest
 
 
-class CarTest(unittest.TestCase):
+class TestCar(unittest.TestCase):
 
     def test_proper_init_method(self):
         c = Car('BMW', 'M316', 10, 60)

@@ -3,7 +3,7 @@ from cat import Cat
 import unittest
 
 
-class CatTest(unittest.TestCase):
+class TestCat(unittest.TestCase):
 
     def test_cat_size_eat_method(self):
         c = Cat('Kitty')
@@ -16,7 +16,7 @@ class CatTest(unittest.TestCase):
         c = Cat('Kitty')
         c.fed = False
         c.eat()
-        self.assertEqual(c.fed, True)
+        self.assertTrue(c.fed)
 
     def test_cat_is_full_eat_method(self):
         c = Cat('Kitty')
@@ -39,7 +39,7 @@ class CatTest(unittest.TestCase):
         c.fed = True
         c.sleepy = True
         c.sleep()
-        self.assertEqual(c.sleepy, False)
+        self.assertFalse(c.sleepy)
 
 
 if __name__ == '__main__':

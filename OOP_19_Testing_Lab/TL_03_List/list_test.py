@@ -86,5 +86,6 @@ class ListTest(unittest.TestCase):
         il = IntegerList(1, 2, 3)
         self.assertEqual(il.get_index(3), 2)
 
+
 if __name__ == '__main__':
     unittest.main()

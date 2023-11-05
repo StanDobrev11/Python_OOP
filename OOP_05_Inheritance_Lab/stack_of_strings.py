@@ -25,7 +25,7 @@ class Stack:
 
 # class BaseStack:
 #     def __init__(self):
-#         self.data: List[str] = []
+#         self.data: TL_03_List[str] = []
 #
 #     def is_empty(self):
 #         return False if self.data else True

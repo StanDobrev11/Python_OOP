@@ -1,9 +1,9 @@
 """
 Create a class called Hero. Upon initialization, it should receive a name (string) and health (number). Create two
 additional methods:
-• defend(damage) - reduce the given damage from the hero's health:
+• defend(damage) - reduce the given damage from the TE_03_Hero's health:
 o if the health becomes 0 or less, set it to 0 and return "{name} was defeated"
-• heal(amount) - increase the health of the hero with the given amount
+• heal(amount) - increase the health of the TE_03_Hero with the given amount
 """
 
 
