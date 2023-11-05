@@ -28,3 +28,8 @@ class Student:
             self.courses.pop(course_name)
             return "Course has been removed"
         raise Exception("Cannot remove course. Course not found.")
+
+if __name__ == '__main__':
+    s = Student('I')
+    print(s.enroll('math', []))
+    print()
