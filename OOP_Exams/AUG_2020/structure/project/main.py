@@ -7,15 +7,14 @@ def zero_test():
     print(System.analyze())
     System.register_light_software("HDD", "Test", 0, 10)
     # print(System.register_express_software("HDD", "Test2", 100, 100))
-    # System.register_express_software("HDD", "Test3", 50, 100)
+    System.register_express_software("HDD", "Test3", 50, 100)
     System.register_light_software("SSD", "Windows", 20, 50)
     System.register_express_software("SSD", "Linux", 50, 100)
     System.register_light_software("SSD", "Unix", 20, 50)
     print(System.analyze())
     System.release_software_component("SSD", "Linux")
     print(System.system_split())
-
+    print()
 
 if __name__ == "__main__":
-    System = System()
     zero_test()
