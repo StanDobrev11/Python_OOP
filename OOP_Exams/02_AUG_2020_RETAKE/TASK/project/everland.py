@@ -10,11 +10,16 @@ class Everland:
     def add_room(self, room: Room):
         self.rooms.append(room)
 
+    def remove_room(self, room: Room):
+        self.rooms.remove(room)
+
     def get_monthly_consumptions(self):
+
         total_consumption = sum((room.room_cost + room.expenses) for room in self.rooms)
         return f"Monthly consumption: {total_consumption:.2f}$."
 
     def pay(self):
+
         result = []
         for room in self.rooms:
             room_total_cost = room.room_cost + room.expenses
@@ -23,7 +28,7 @@ class Everland:
                 text = f"{room.name} paid {room_total_cost:.2f}$ and have {room.budget:.2f}$ left."
             else:
                 text = f"{room.name} does not have enough budget and must leave the hotel."
-                self.rooms.remove(room)
+                self.remove_room(room)
             result.append(text)
 
         return '\n'.join(result)
@@ -38,6 +43,6 @@ class Everland:
                 for child in room.children:
                     result_text += f"--- Child {count} monthly cost: {child.monthly_cost:.2f}$\n"
                     count += 1
-            if room.appliances:
-                result_text += f"‐‐‐ Appliances monthly cost: {room.expenses:.2f}\n"
+            # if room.appliances:
+            result_text += f"‐‐‐ Appliances monthly cost: {room.expenses:.2f}\n"
         return result_text

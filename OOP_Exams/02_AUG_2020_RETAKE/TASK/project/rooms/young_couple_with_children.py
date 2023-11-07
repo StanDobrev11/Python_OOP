@@ -5,6 +5,7 @@ from project.rooms.room import Room
 
 
 class YoungCoupleWithChildren(Room):
+
     def __init__(self, name: str, budget_one, budget_two, *children):
         super().__init__(name, budget=budget_one + budget_two, members_count=2 + len(children))
         self.room_cost = 30

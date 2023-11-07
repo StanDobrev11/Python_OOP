@@ -109,6 +109,13 @@ class TestYoungCoupleWithChildren(unittest.TestCase):
     def test_proper_expenses_attribute_appliances_for_all_members_and_child_care(self):
         self.assertEqual(975, self.room.expenses)
 
+    def test_no_children(self):
+        room = YoungCoupleWithChildren('Test', 100, 150)
+        self.assertEqual(2, room.members_count)
+        self.assertEqual([], room.children)
+        self.assertEqual(0, room.calculate_expenses(room.children))
+        self.assertEqual(222, room.expenses)
+
 
 if __name__ == '__main__':
     unittest.main()
