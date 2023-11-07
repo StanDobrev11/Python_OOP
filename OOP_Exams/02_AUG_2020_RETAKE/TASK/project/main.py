@@ -11,7 +11,7 @@ everland = Everland()
 
 def test_one():
     young_single = (AloneYoung('Johny', 10))
-    old_single = AloneOld('Me', 10)
+    old_single = AloneOld('James', 10)
     old_couple = OldCouple("Oldees", 200, 120)
     young_couple = YoungCouple("Johnsons", 200, 205)
     child1 = Child(5, 1, 2, 1)
