@@ -29,16 +29,15 @@ class Everland:
         return '\n'.join(result)
 
     def status(self):
-        adult_population = sum(room.members_count for room in self.rooms)
-        child_population = sum(len(room.children) for room in self.rooms)
-        total_population = adult_population + child_population
+        total_population = sum(room.members_count for room in self.rooms)
         result_text = f"Total population: {total_population}\n"
         for room in self.rooms:
-            result_text += f"{room.name} with {room.members_count + len(room.children)} members. Budget: {room.budget:.2f}$, Expenses: {room.expenses + room.room_cost:.2f}$)\n"
+            result_text += f"{room.name} with {room.members_count} members. Budget: {room.budget:.2f}$, Expenses: {room.expenses + room.room_cost:.2f}$)\n"
             if room.children:
                 count = 1
                 for child in room.children:
-                    result_text += f"--- Child {count} monthly cost: {child.get_monthly_expense():.2f}$\n"
+                    result_text += f"--- Child {count} monthly cost: {child.monthly_cost:.2f}$\n"
                     count += 1
             if room.appliances:
-                result_text += f"‐‐‐ Appliances monthly cost: {room.expenses:.2f}"
+                result_text += f"‐‐‐ Appliances monthly cost: {room.expenses:.2f}\n"
+        return result_text
