@@ -6,7 +6,7 @@ from project.people.child import Child
 
 class Room:
     def __init__(self, name: str, budget: float, members_count: int):
-        self.name = name
+        self.family_name = name
         self.budget = budget
         self.members_count = members_count
         self.children: List[Child] = []

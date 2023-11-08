@@ -68,6 +68,16 @@ class TestEverland(unittest.TestCase):
     def test_status_no_rooms(self):
         self.assertEqual("Total population: 0\n", self.everland.status())
 
+    def test_total_members_count(self):
+        self.everland.add_room(self.young_single)
+        self.everland.add_room(self.old_single)
+        self.everland.add_room(self.young_couple)
+        self.everland.add_room(self.old_couple)
+        self.everland.add_room(self.young_couple_with_children)
+        actual = sum(room.members_count for room in self.everland.rooms)
+        expected = 10
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()
