@@ -151,5 +151,4 @@ class Bakery:
         return '\n'.join(table.free_table_info() for table in free_tables)
 
     def get_total_income(self):
-
-        return f"{self.total_income :.2f}"
+        return f"Total income: {self.total_income :.2f}lv"
