@@ -34,6 +34,7 @@ class Bakery:
         self.__name = value
 
     def add_food(self, food_type: str, name: str, price: float) -> str:
+
         """Creates food with the correct type and adds it to the menu"""
         if food_type in self.FOOD_TYPES:
             try:
@@ -45,6 +46,7 @@ class Bakery:
                 return f"Added {name} ({food_type}) to the food menu"
 
     def add_drink(self, drink_type: str, name: str, portion: float, brand: str) -> str:
+
         """Creates drink with the correct type and adds it to the menu"""
         if drink_type in self.DRINK_TYPES:
             try:
@@ -56,6 +58,7 @@ class Bakery:
                 return f"Added {name} ({drink.brand}) to the drink menu"
 
     def add_table(self, table_type: str, table_number: int, capacity: int) -> str:
+
         """Creates a table with the correct type, adds it to the table repository"""
         if table_type in self.TABLE_TYPES:
             try:
@@ -68,6 +71,7 @@ class Bakery:
                 return f"Added table number {table_number} in the bakery"
 
     def reserve_table(self, number_of_people: int) -> str:
+
         """Finds the first possible table which is not reserved,
         and its capacity is enough for the number of people provided and reserves the table"""
         for table in self.tables_repository:
@@ -78,6 +82,7 @@ class Bakery:
             return f"No available table for {number_of_people} people"
 
     def order_food(self, table_number: int, *food_names) -> str:
+
         try:
             table = [table for table in self.tables_repository if table.table_number == table_number][0]
         except IndexError:
@@ -101,6 +106,7 @@ class Bakery:
         return text
 
     def order_drink(self, table_number: int, *drink_names) -> str:
+
         try:
             table = [table for table in self.tables_repository if table.table_number == table_number][0]
         except IndexError:
@@ -124,6 +130,7 @@ class Bakery:
         return text
 
     def leave_table(self, table_number: int):
+
         try:
             table = [table for table in self.tables_repository if table.table_number == table_number][0]
         except IndexError:
@@ -135,6 +142,7 @@ class Bakery:
         return f"Table: {table_number}\nBill: {bill :.2f}"
 
     def get_free_tables_info(self):
+
         free_tables = []
         for table in self.tables_repository:
             if not table.is_reserved:
@@ -143,4 +151,5 @@ class Bakery:
         return '\n'.join(table.free_table_info() for table in free_tables)
 
     def get_total_income(self):
+
         return f"{self.total_income :.2f}"

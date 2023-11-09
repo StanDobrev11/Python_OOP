@@ -33,4 +33,4 @@ class BakedFood(ABC):
         self.__price = value
 
     def __repr__(self) -> str:
-        return f"- {self.name}: {self.portion :.2f}g - {self.price :.2f}lv"
+        return f" - {self.name}: {self.portion :.2f}g - {self.price :.2f}lv"
