@@ -10,7 +10,7 @@ class TestFish(unittest.TestCase):
     def test_fish_abc(self):
         with self.assertRaises(TypeError) as te:
             f = BaseFish('test', 'species', 5, 5)
-        expected = "Can't instantiate abstract class BaseFish with abstract method eat"
+        expected = "Can't instantiate abstract class BaseFish with abstract methods aquarium_type, eat, type"
         self.assertEqual(expected, str(te.exception))
 
     def test_freshwater_fish_init(self):
@@ -58,3 +58,6 @@ class TestFish(unittest.TestCase):
         fish = SaltwaterFish('test', 'salt', 10)
         fish.eat()
         self.assertEqual(7, fish.size)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -23,9 +23,6 @@ class BaseAquarium(ABC):
         return sum(decor.comfort for decor in self.decorations)
 
     def add_fish(self, fish: BaseFish):
-        if fish.type not in fish.base_types:
-            return f"There isn't a fish of type {fish.type}."
-
         if fish.aquarium_type != self.type:
             return "Water not suitable."
 

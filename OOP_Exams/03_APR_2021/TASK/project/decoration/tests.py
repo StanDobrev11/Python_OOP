@@ -11,7 +11,7 @@ class TestDecoration(unittest.TestCase):
     def test_base_decoration_abc(self):
         with self.assertRaises(TypeError) as te:
             b = BaseDecoration(5, 3)
-        expected = "Can't instantiate abstract class BaseDecoration with abstract method __repr__"
+        expected = "Can't instantiate abstract class BaseDecoration with abstract method type"
         self.assertEqual(expected, str(te.exception))
 
     def test_decoration_types_implemented(self):
@@ -81,6 +81,12 @@ class TestDecoration(unittest.TestCase):
     def test_find_decoration_return_none_if_none(self):
         dr = DecorationRepository()
         self.assertIsNone(dr.find_by_type('Ornament'))
+
+    def test_type_method(self):
+        o = Ornament()
+        p = Plant()
+        self.assertEqual('Ornament', o.type)
+        self.assertEqual('Plant', p.type)
 
 
 if __name__ == '__main__':

@@ -22,5 +22,5 @@ class DecorationRepository:
         try:
             return [decor for decor in self.decorations if decor.type == decoration_type][0]
         except IndexError:
-            return None
+            return "None"
 
