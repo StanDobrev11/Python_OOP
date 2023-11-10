@@ -3,7 +3,6 @@ import unittest
 from project.astronaut.biologist import Biologist
 from project.astronaut.geodesist import Geodesist
 from project.astronaut.meteorologist import Meteorologist
-from project.planet.planet import Planet
 from project.space_station import SpaceStation
 
 
@@ -35,9 +34,25 @@ class TestSpaceStation(unittest.TestCase):
         expected = "Successfully added Biologist: Test."
         self.assertEqual(expected, actual)
 
+    def test_add_astro_return_already_exists(self):
+        self.ss.add_astronaut("Biologist", 'Test')
+        actual = self.ss.add_astronaut("Biologist", 'Test')
+        expected = "Test is already added."
+        self.assertEqual(expected, actual)
+
     def test_add_planet(self):
         actual = self.ss.add_planet('p', '1, 2, 3')
         self.assertEqual("Successfully added Planet: p.", actual)
+
+    def test_add_planet_already_added(self):
+        self.ss.add_planet('p', '1, 2')
+        actual = self.ss.add_planet('p', '1, 2, 3')
+        expected = "p is already added."
+        self.assertEqual(expected, actual)
+
+        actual = self.ss.planet_repository.planets[0].items
+        expected = ['1', '2']
+        self.assertEqual(expected, actual)
 
     def test_retire_astro_valid(self):
         self.ss.add_astronaut('Biologist', 'b')
@@ -93,6 +108,7 @@ class TestSpaceStation(unittest.TestCase):
         expected = "Mission is not completed."
 
         self.assertEqual(expected, actual)
+        self.assertEqual(1, self.ss.mission_failed)
 
     def test_report(self):
         self.ss.add_planet('Earth', '1, 2, 3, 4, 5')

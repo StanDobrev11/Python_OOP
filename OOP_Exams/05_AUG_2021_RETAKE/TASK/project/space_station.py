@@ -54,8 +54,6 @@ class SpaceStation:
                 f"{self.mission_failed} missions were not completed!\n"
                 f"Astronauts' info:\n")
 
-        for astro in self.astronaut_repository.astronauts:
-            text += astro.__repr__()
-            text += '\n'
+        text += '\n'.join([astro.__repr__() for astro in self.astronaut_repository.astronauts])
 
-        return text.strip()
+        return text

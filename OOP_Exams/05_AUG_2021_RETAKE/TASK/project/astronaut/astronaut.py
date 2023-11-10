@@ -49,8 +49,8 @@ class Astronaut(ABC):
             except IndexError:
                 break
 
-            if not planet.items:
-                planet.is_explored = True
+        if not planet.items:
+            planet.is_explored = True
 
     def increase_oxygen(self, amount: int) -> None:
         """ Increases the oxygen with the given amount. """

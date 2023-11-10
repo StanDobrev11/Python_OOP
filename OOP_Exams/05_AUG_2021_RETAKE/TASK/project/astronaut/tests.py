@@ -174,5 +174,15 @@ class TestAstronaut(unittest.TestCase):
         self.assertEqual(['5', '4', '3', '2', '1'], self.g.backpack)
         self.assertEqual(['-1', '0'], planet.items)
 
+    def test_explore_planet_no_items(self):
+        planet = Planet('test')
+        self.assertEqual([], planet.items)
+
+        self.g.explore(planet)
+
+        self.assertEqual(50, self.g.oxygen)
+        self.assertTrue(planet.is_explored)
+
+
 if __name__ == '__main__':
     unittest.main()
