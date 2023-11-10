@@ -31,9 +31,10 @@ class TestPlanet(unittest.TestCase):
 
     def test_add_same_planet(self):
         self.pr.add(self.p)
+        self.pr.add(self.p2)
         actual = self.pr.add(self.p)
         expected = "p is already added."
-        self.assertEqual([self.p], self.pr.planets)
+        self.assertEqual([self.p, self.p2], self.pr.planets)
         self.assertEqual(expected, actual)
 
     def test_remove_planet(self):

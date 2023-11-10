@@ -9,11 +9,11 @@ class AstronautRepository:
 
     def add(self, astronaut: Astronaut) -> str:
         """ Adds astronaut to the list """
-        if astronaut not in self.astronauts:
-            self.astronauts.append(astronaut)
-            return f"Successfully added {astronaut.type}: {astronaut.name}."
-        else:
+        if any(astronaut.name == astro.name for astro in self.astronauts):
             return f"{astronaut.name} is already added."
+
+        self.astronauts.append(astronaut)
+        return f"Successfully added {astronaut.type}: {astronaut.name}."
 
     def remove(self, astronaut: Astronaut):
         """ Removes astronaut from the list """

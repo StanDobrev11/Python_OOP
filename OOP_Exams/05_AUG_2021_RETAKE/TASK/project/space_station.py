@@ -14,6 +14,7 @@ class SpaceStation:
         self.astronaut_repository = AstronautRepository()
         self.mission_success = 0
         self.mission_failed = 0
+
     def add_astronaut(self, astronaut_type: str, name: str) -> str:
         if astronaut_type in self.ASTRONAUTS:
             astro = self.ASTRONAUTS[astronaut_type](name)
@@ -37,13 +38,13 @@ class SpaceStation:
     def send_on_mission(self, planet_name: str):
         planet = self.planet_repository.find_by_name(planet_name)
         astronauts = self.astronaut_repository.select_for_mission()
-
+        participants = 0
         for astronaut in astronauts:
             astronaut.explore(planet)
-
+            participants += 1
             if planet.is_explored:
                 self.mission_success += 1
-                return f"Planet: {planet_name} was explored. {len(astronauts)} astronauts participated in collecting items."
+                return f"Planet: {planet_name} was explored. {participants} astronauts participated in collecting items."
         else:
             self.mission_failed += 1
             return "Mission is not completed."
@@ -58,4 +59,3 @@ class SpaceStation:
             text += '\n'
 
         return text.strip()
-

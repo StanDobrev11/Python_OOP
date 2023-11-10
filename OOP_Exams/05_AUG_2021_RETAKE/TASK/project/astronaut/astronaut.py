@@ -30,27 +30,15 @@ class Astronaut(ABC):
         """ Required oxygen units while breathing. Specific for each type of astronaut. """
         return 10  # default value for oxygen consumption
 
-    @property
-    def oxygen(self) -> int:
-        return self.__oxygen
-
-    @oxygen.setter
-    def oxygen(self, value: int) -> None:
-        self.__oxygen = value
-
-    def breathe(self) -> None:
-        """ Each time an astronaut takes a breath, their oxygen decreases. """
-        self.oxygen -= self.oxygen_consumption
-
-    def increase_oxygen(self, amount: int) -> None:
-        """ Increases the oxygen with the given amount. """
-        self.oxygen += amount
-
     def __repr__(self):
         return f"Name: {self.name}\nOxygen: {self.oxygen}\nBackpack items: {', '.join(self.backpack) if self.backpack else 'none'}"
 
     def __gt__(self, other):
         return self.oxygen > other.oxygen
+
+    def breathe(self) -> None:
+        """ Each time an astronaut takes a breath, their oxygen decreases. """
+        self.oxygen -= self.oxygen_consumption
 
     def explore(self, planet: Planet):
         while self.oxygen > 0:
@@ -61,5 +49,9 @@ class Astronaut(ABC):
             except IndexError:
                 break
 
-        if not planet.items:
-            planet.is_explored = True
+            if not planet.items:
+                planet.is_explored = True
+
+    def increase_oxygen(self, amount: int) -> None:
+        """ Increases the oxygen with the given amount. """
+        self.oxygen += amount

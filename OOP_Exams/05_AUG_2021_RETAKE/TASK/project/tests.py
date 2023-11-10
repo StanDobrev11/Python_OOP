@@ -81,7 +81,7 @@ class TestSpaceStation(unittest.TestCase):
         self.ss.add_astronaut('Geodesist', 'GeoName')
 
         actual = self.ss.send_on_mission('Earth')
-        expected = "Planet: Earth was explored. 2 astronauts participated in collecting items."
+        expected = "Planet: Earth was explored. 1 astronauts participated in collecting items."
 
         self.assertEqual(expected, actual)
 
@@ -102,3 +102,7 @@ class TestSpaceStation(unittest.TestCase):
         expected = f"1 successful missions!\n0 missions were not completed!\nAstronauts' info:\nName: BioName\nOxygen: 45\nBackpack items: 5, 4, 3, 2, 1\nName: GeoName\nOxygen: 50\nBackpack items: none"
         actual = self.ss.report()
         self.assertEqual(expected, actual)
+
+
+if __name__ == '__main__':
+    unittest.main()
