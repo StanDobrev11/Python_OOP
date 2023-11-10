@@ -1,6 +1,7 @@
 import unittest
 
 from project.astronaut.astronaut import Astronaut
+from project.astronaut.astronaut_repository import AstronautRepository
 from project.astronaut.biologist import Biologist
 from project.astronaut.geodesist import Geodesist
 from project.astronaut.meteorologist import Meteorologist
@@ -11,6 +12,7 @@ class TestAstronaut(unittest.TestCase):
         self.b = Biologist('b')
         self.g = Geodesist('g')
         self.m = Meteorologist('m')
+        self.ar = AstronautRepository()
 
     def test_base_class_abc(self):
         with self.assertRaises(TypeError):
@@ -48,6 +50,43 @@ class TestAstronaut(unittest.TestCase):
         self.assertEqual(70, self.b.oxygen)
         self.b.increase_oxygen(10)
         self.assertEqual(80, self.b.oxygen)
+
+    def test_add_astro_in_list(self):
+        self.assertEqual([], self.ar.astronauts)
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        self.assertEqual([self.b, self.g], self.ar.astronauts)
+
+    def test_add_same_astro(self):
+        self.assertEqual([], self.ar.astronauts)
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        self.ar.add(self.g)
+        self.assertEqual([self.b, self.g], self.ar.astronauts)
+
+    def test_remove_existing_astro(self):
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        self.ar.remove(self.b)
+        self.assertEqual([self.g], self.ar.astronauts)
+
+    def test_remove_astro_not_in_list(self):
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        self.ar.remove(self.m)
+        self.assertEqual([self.b, self.g], self.ar.astronauts)
+
+    def test_find_by_name_success(self):
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        actual = self.ar.find_by_name('g')
+        expected = self.g
+        self.assertEqual(expected, actual)
+
+    def test_find_by_name_returns_none(self):
+        self.ar.add(self.b)
+        self.ar.add(self.g)
+        self.assertIsNone(self.ar.find_by_name('m'))
 
 
 if __name__ == '__main__':
