@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List
 
+from project.planet.planet import Planet
+
 
 class Astronaut(ABC):
     @abstractmethod
@@ -8,6 +10,10 @@ class Astronaut(ABC):
         self.name = name
         self.oxygen = oxygen
         self.backpack: List = []
+
+    @property
+    def type(self):
+        return self.__class__.__name__
 
     @property
     def name(self) -> str:
@@ -39,3 +45,21 @@ class Astronaut(ABC):
     def increase_oxygen(self, amount: int) -> None:
         """ Increases the oxygen with the given amount. """
         self.oxygen += amount
+
+    def __repr__(self):
+        return f"Name: {self.name}\nOxygen: {self.oxygen}\nBackpack items: {', '.join(self.backpack) if self.backpack else 'none'}"
+
+    def __gt__(self, other):
+        return self.oxygen > other.oxygen
+
+    def explore(self, planet: Planet):
+        while self.oxygen > 0:
+            try:
+                item = planet.items.pop()  # takes item found on planet
+                self.backpack.append(item)  # places item in backpack
+                self.breathe()  # takes a breath when finds item and reduces oxygen
+            except IndexError:
+                break
+
+        if not planet.items:
+            planet.is_explored = True

@@ -5,6 +5,7 @@ class Planet:
     def __init__(self, name: str):
         self.name = name
         self.items: List = []
+        self.is_explored = False
 
     @property
     def name(self) -> str:
@@ -15,3 +16,8 @@ class Planet:
         if value.strip() == '':
             raise ValueError("Planet name cannot be empty string or whitespace!")
         self.__name = value
+
+    def add_items(self, items: str):
+        items = items.split(', ')
+        for item in items:
+            self.items.append(item)

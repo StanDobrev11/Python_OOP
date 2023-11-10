@@ -24,13 +24,17 @@ class TestPlanet(unittest.TestCase):
             self.assertEqual("Planet name cannot be empty string or whitespace!", str(ve.exception))
 
     def test_add_planet_to_repo(self):
-        self.pr.add(self.p)
+        actual = self.pr.add(self.p)
+        expected = "Successfully added Planet: p."
         self.assertEqual([self.p], self.pr.planets)
+        self.assertEqual(expected, actual)
 
     def test_add_same_planet(self):
         self.pr.add(self.p)
-        self.pr.add(self.p)
+        actual = self.pr.add(self.p)
+        expected = "p is already added."
         self.assertEqual([self.p], self.pr.planets)
+        self.assertEqual(expected, actual)
 
     def test_remove_planet(self):
         self.pr.add(self.p)
@@ -53,11 +57,19 @@ class TestPlanet(unittest.TestCase):
         expected = self.p2
         self.assertEqual(expected, actual)
 
-    def test_find_non_listed_planet_returns_none(self):
+    def test_find_non_listed_planet_raises_exception(self):
         self.pr.add(self.p)
         self.pr.add(self.p2)
-        self.assertEqual([self.p, self.p2], self.pr.planets)
-        self.assertIsNone(self.pr.find_by_name('p3'))
+        with self.assertRaises(Exception) as ex:
+            self.pr.find_by_name('p3')
+        self.assertEqual("Invalid planet name!", str(ex.exception))
+
+    def test_add_items(self):
+        items = 'knife, coca-cola, RANDOM_ITEM, different object, some.simple items'
+        self.p.add_items(items)
+        actual = self.p.items
+        expected = ['knife', 'coca-cola', 'RANDOM_ITEM', 'different object', 'some.simple items']
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
