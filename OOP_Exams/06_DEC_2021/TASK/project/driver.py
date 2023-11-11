@@ -8,6 +8,7 @@ class Driver:
         self.number_of_wins: int = 0
         self.has_car = False
 
+
     @property
     def name(self) -> str:
         return self.__name
@@ -25,3 +26,6 @@ class Driver:
     def remove_car(self):
         self.car = None
         self.has_car = False
+
+    def __gt__(self, other):
+        return self.car.speed_limit > other.car.speed_limit

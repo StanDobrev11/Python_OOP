@@ -82,12 +82,35 @@ class Controller:
         if not driver.has_car:
             raise Exception(f"Driver {driver_name} could not participate in the race!")
 
-        try:
-            if [drv for drv in race.drivers if drv.name == driver_name][0]:
+        for drv in race.drivers:
+            if drv.name == driver_name:
                 raise Exception(f"Driver {driver_name} is already added in {race_name} race.")
-        except IndexError:
-            race.drivers.append(driver)
-            return f"Driver {driver_name} added in {race_name} race."
+
+        race.drivers.append(driver)
+        return f"Driver {driver_name} added in {race_name} race."
+
+        # try:
+        #     drv = [drv for drv in race.drivers if drv.name == driver_name][0]
+        #     if drv:
+        #         raise Exception(f"Driver {driver_name} is already added in {race_name} race.")
+        # except IndexError:
+        #     race.drivers.append(driver)
+        #     return f"Driver {driver_name} added in {race_name} race."
 
     def start_race(self, race_name: str):
-        pass
+        try:
+            race = [r for r in self.races if r.name == race_name][0]
+        except IndexError:
+            raise Exception(f"Race {race_name} could not be found!")
+
+        if len(race.drivers) < 3:
+            raise Exception(f"Race {race_name} cannot start with less than 3 participants!")
+
+        fastest_drivers = sorted(race.drivers, reverse=True)[:3]
+
+        winning_text = ''
+        for driver in fastest_drivers:
+            driver.number_of_wins += 1
+            winning_text += f"Driver {driver.name} wins the {race_name} race with a speed of {driver.car.speed_limit}.\n"
+
+        return winning_text.strip()
