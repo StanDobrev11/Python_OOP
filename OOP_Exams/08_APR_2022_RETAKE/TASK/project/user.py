@@ -1,14 +1,9 @@
-from typing import List
-
-from project.movie_specification.movie import Movie
-
-
 class User:
     def __init__(self, username: str, age: int):
         self.username = username
         self.age = age
-        self.movies_liked: List[Movie] = []
-        self.movies_owned: List[Movie] = []
+        self.movies_liked = []
+        self.movies_owned = []
 
     @property
     def username(self):
@@ -31,9 +26,10 @@ class User:
         self.__age = value
 
     def __str__(self):
-        text = f"Username: {self.username}, Age: {self.age}\nLiked movies:\n"
-        text += '\n'.join([movie.details() for movie in self.movies_liked] if self.movies_liked else "No movies liked.")
-        text += "\nOwned movies:\n"
-        text += '\n'.join([movie.details() for movie in self.movies_owned] if self.movies_owned else "No movies owned.")
+        text = (f"Username: {self.username}, Age: {self.age}\n"
+                f"Liked movies:\n")
+        text += '\n'.join(movie.details() for movie in self.movies_liked) if self.movies_liked else "No movies liked.\n"
+        text += "Owned movies:\n"
+        text += '\n'.join(movie.details() if self.movies_owned else "No movies owned.\n" for movie in self.movies_owned)
 
         return text
