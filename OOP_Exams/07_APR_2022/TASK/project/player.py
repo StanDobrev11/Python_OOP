@@ -54,9 +54,15 @@ class Player:
     def __str__(self):
         return f"Player: {self.name}, {self.age}, {self.stamina}, {self.need_sustenance}"
 
+    def __gt__(self, other):
+        return self.stamina > other.stamina
+
     def replenish_stamina(self, sustenance: Supply):
         if self.stamina + sustenance.energy > 100:
             self.stamina = 100
-
-        self.stamina += sustenance.energy
+        else:
+            self.stamina += sustenance.energy
         return f"{self.name} sustained successfully with {sustenance.name}."
+
+    def __repr__(self):
+        return f"({self.name}, {self.age}, {self.stamina})"

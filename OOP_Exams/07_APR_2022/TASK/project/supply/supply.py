@@ -33,3 +33,6 @@ class Supply(ABC):
 
     def details(self) -> str:
         return f"{self.type}: {self.name}, {self.energy}"
+
+    def __repr__(self):
+        return f"{self.name}: {self.energy}"
