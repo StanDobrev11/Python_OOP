@@ -16,7 +16,7 @@ class Horse(ABC):
 
     @property
     def breed(self):
-        return self.__class__.name
+        return self.__class__.__name__
 
     @property
     def name(self):

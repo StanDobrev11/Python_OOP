@@ -6,3 +6,6 @@ class Appaloosa(Horse):
     @property
     def training_gain(self):
         return 2
+
+
+
