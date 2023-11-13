@@ -81,10 +81,38 @@ class HorseRaceApp:
         horse.is_taken = True
         return f"Jockey {jockey_name} will ride the horse {horse.name}."
 
+    def add_jockey_to_horse_race(self, race_type: str, jockey_name: str):
+        """Adds a jockey (object) to the given horse race type (if they both exist).
+        A jockey can only participate in a horse race if he has a horse."""
 
-if __name__ == '__main__':
-    h = HorseRaceApp()
-    print(h.create_horse_race('Winter'))
-    print(h.create_horse_race('Winter'))
-    print(h.add_horse('Appaloosa', 'konche', 120))
-    print(h.add_horse('Thoghbred', 'konche', 101))
+        try:
+            race = [r for r in self.horse_races if r.race_type == race_type][0]
+        except IndexError:
+            raise Exception(f"Race {race_type} could not be found!")
+
+        jockey = self.get_existing_jockey(jockey_name)
+        if not jockey:
+            raise Exception(f"Jockey {jockey_name} could not be found!")
+
+        if not jockey.horse:
+            raise Exception(f"Jockey {jockey_name} cannot race without a horse!")
+
+        try:
+            if [j for j in race.jockeys if j.name == jockey_name][0]:
+                return f"Jockey {jockey_name} has been already added to the {race_type} race."
+        except IndexError:
+            race.jockeys.append(jockey)
+            return f"Jockey {jockey_name} added to the {race_type} race."
+
+    def start_horse_race(self, race_type: str):
+        try:
+            race = [r for r in self.horse_races if r.race_type == race_type][0]
+        except IndexError:
+            raise Exception(f"Race {race_type} could not be found!")
+
+        if len(race.jockeys) < 2:
+            raise Exception(f"Horse race {race_type} needs at least two participants!")
+
+        winner = max(race.jockeys)
+
+        return f"The winner of the {race_type} race, with a speed of {winner.horse.speed}km/h is {winner.name}! Winner's horse: {winner.horse.name}."

@@ -23,3 +23,6 @@ class Jockey:
         if value < 18:
             raise ValueError("Jockeys must be at least 18 to participate in the race!")
         self.__age = value
+
+    def __gt__(self, other):
+        return self.horse.speed > other.horse.speed
