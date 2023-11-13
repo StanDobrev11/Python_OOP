@@ -220,6 +220,29 @@ class TestMovieApp(unittest.TestCase):
         actual = str(self.m)
         self.assertEqual(expected, actual)
 
+    def test_user_str_method(self):
+        self.m.register_user('test', 20)
+        self.m.register_user('test2', 18)
+        user = self.m.get_existing_user('test')
+        user2 = self.m.get_existing_user('test2')
+        self.movie4.owner = user2
+        self.movie.owner = user2
+        self.movie2.owner = user
+        self.movie3.owner = user
+        self.m.upload_movie('test2', self.movie)
+        self.m.upload_movie('test2', self.movie4)
+        self.m.upload_movie('test', self.movie2)
+        self.m.upload_movie('test', self.movie3)
+        self.m.like_movie('test', self.movie)
+        self.m.like_movie('test', self.movie4)
+
+        self.assertEqual([self.movie2, self.movie3], user.movies_owned)
+        self.assertEqual([self.movie, self.movie4], user.movies_liked)
+
+        expected = f"Username: test, Age: 20\nLiked movies:\n{self.movie.details()}\n{self.movie4.details()}\nOwned movies:\n{self.movie2.details()}\n{self.movie3.details()}"
+        actual = str(user)
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()

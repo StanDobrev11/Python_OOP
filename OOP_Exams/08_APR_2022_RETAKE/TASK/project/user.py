@@ -28,8 +28,8 @@ class User:
     def __str__(self):
         text = (f"Username: {self.username}, Age: {self.age}\n"
                 f"Liked movies:\n")
-        text += '\n'.join(movie.details() for movie in self.movies_liked) if self.movies_liked else "No movies liked.\n"
-        text += "Owned movies:\n"
-        text += '\n'.join(movie.details() if self.movies_owned else "No movies owned.\n" for movie in self.movies_owned)
+        text += '\n'.join(movie.details() for movie in self.movies_liked) if self.movies_liked else "No movies liked."
+        text += "\nOwned movies:\n"
+        text += '\n'.join(movie.details() for movie in self.movies_owned) if self.movies_owned else "No movies owned.\n"
 
         return text

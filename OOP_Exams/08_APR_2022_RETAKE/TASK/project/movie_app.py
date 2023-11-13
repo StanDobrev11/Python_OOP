@@ -34,10 +34,11 @@ class MovieApp:
             raise Exception("This user does not exist!")
 
         user = self.get_existing_user(username)
-        if movie.owner != user:
-            raise Exception(f"{username} is not the owner of the movie {movie.title}!")
+
         if movie in self.movies_collection:
             raise Exception("Movie already added to the collection!")
+        if movie.owner != user:
+            raise Exception(f"{username} is not the owner of the movie {movie.title}!")
 
         self.movies_collection.append(movie)
         user.movies_owned.append(movie)
@@ -99,7 +100,7 @@ class MovieApp:
 
     def display_movies(self):
         text = []
-        for movie in sorted(self.movies_collection, key=lambda m: -m.year):
+        for movie in sorted(self.movies_collection, key=lambda m: (-m.year, m.title)):
             text.append(movie.details())
 
         if not text:
