@@ -56,12 +56,11 @@ class HorseRaceApp:
     def create_horse_race(self, race_type: str):
         """ The method creates a race and adds it to the horse races' list. """
 
-        try:
-            if [r for r in self.horse_races if r.race_type == race_type][0]:
-                raise Exception(f"Race {race_type} has been already created!")
-        except IndexError:
-            self.horse_races.append(HorseRace(race_type))
-            return f"Race {race_type} is created."
+        if race_type in [r.race_type for r in self.horse_races]:
+            raise Exception(f"Race {race_type} has been already created!")
+
+        self.horse_races.append(HorseRace(race_type))
+        return f"Race {race_type} is created."
 
     def add_horse_to_jockey(self, jockey_name: str, breed: str):
         """ Sets the last horse added from the given horse type to the jockey with the given name if they both exist."""
@@ -97,12 +96,11 @@ class HorseRaceApp:
         if not jockey.horse:
             raise Exception(f"Jockey {jockey_name} cannot race without a horse!")
 
-        try:
-            if [j for j in race.jockeys if j.name == jockey_name][0]:
-                return f"Jockey {jockey_name} has been already added to the {race_type} race."
-        except IndexError:
-            race.jockeys.append(jockey)
-            return f"Jockey {jockey_name} added to the {race_type} race."
+        if jockey_name in [j.name for j in race.jockeys]:
+            return f"Jockey {jockey_name} has been already added to the {race_type} race."
+
+        race.jockeys.append(jockey)
+        return f"Jockey {jockey_name} added to the {race_type} race."
 
     def start_horse_race(self, race_type: str):
         try:

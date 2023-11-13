@@ -2,7 +2,11 @@ from project.horse_race_app import HorseRaceApp
 
 horseRaceApp = HorseRaceApp()
 print(horseRaceApp.add_horse("Appaloosa", "Spirit", 80))
-print(horseRaceApp.add_horse("Thoroughbred", "Rocket", 110))
+print(horseRaceApp.add_horse("Appaloosa", "Spirit1", 70))
+print(horseRaceApp.add_horse("Appaloosa", "Spirit2", 60))
+print(horseRaceApp.add_horse("Thoroughbred", "Rocket", 120))
+print(horseRaceApp.add_horse("Thoroughbred", "Rocket1", 130))
+print(horseRaceApp.add_horse("Thoroughbred", "Rocket2", 110))
 print(horseRaceApp.add_jockey("Peter", 19))
 print(horseRaceApp.add_jockey("Mariya", 21))
 print(horseRaceApp.create_horse_race("Summer"))
