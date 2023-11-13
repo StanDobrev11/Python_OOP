@@ -153,7 +153,8 @@ class TestMovieApp(unittest.TestCase):
 
     def test_like_movie_owned_movie(self):
         self.m.register_user('Test', 22)
-        self.movie.owner = self.m.users_collection[0]
+        user = self.m.get_existing_user('Test')
+        self.movie.owner = user
         self.m.upload_movie('Test', self.movie)
 
         with self.assertRaises(Exception) as ex:

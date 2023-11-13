@@ -38,11 +38,11 @@ class MovieApp:
         if movie in self.movies_collection:
             raise Exception("Movie already added to the collection!")
         if movie.owner != user:
-            raise Exception(f"{username} is not the owner of the movie {movie.title}!")
+            raise Exception(f"{user.username} is not the owner of the movie {movie.title}!")
 
         self.movies_collection.append(movie)
         user.movies_owned.append(movie)
-        return f"{username} successfully added {movie.title} movie."
+        return f"{user.username} successfully added {movie.title} movie."
 
     def edit_movie(self, username: str, movie: Movie, **attrs):  # **kwargs = ("title", "year", or "age_restriction")
         """
@@ -75,9 +75,9 @@ class MovieApp:
 
     def like_movie(self, username: str, movie: Movie):
         """Owners cannot like their own movies"""
-
         user = self.get_existing_user(username)
-        if movie.owner == user:
+
+        if movie in user.movies_owned:
             raise Exception(f"{username} is the owner of the movie {movie.title}!")
 
         if movie in user.movies_liked:
