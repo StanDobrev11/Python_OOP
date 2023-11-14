@@ -56,6 +56,13 @@ class TestFoodOrdersApp(unittest.TestCase):
             self.f.add_meals_to_shopping_cart('0899999999', **self.food)
         self.assertEqual("The menu is not ready!", str(ex.exception))
 
+    def test_client_throws_exception_adding_items(self):
+        self.f.add_meals_to_menu(*self.six_meals)
+
+        with self.assertRaises(ValueError) as ve:
+            self.f.add_meals_to_shopping_cart('Not valid', **self.food)
+        self.assertEqual("Invalid phone number!", str(ve.exception))
+
     def test_add_meals_to_cart_menu_ready_client_not_existing_raises_name_exception(self):
         self.f.add_meals_to_menu(*self.six_meals)
 
@@ -63,7 +70,7 @@ class TestFoodOrdersApp(unittest.TestCase):
             self.f.add_meals_to_shopping_cart('0888888888', **self.non_ex_food)
 
         self.assertEqual("Non Existing is not on the menu!", str(ex.exception))
-        client = [c for c in self.f.client_list if c.phone_number == '0888888888'][0]
+        client = [c for c in self.f.clients_list if c.phone_number == '0888888888'][0]
         self.assertEqual([], client.shopping_cart)
         self.assertEqual(0, client.bill)
         self.assertEqual({}, client.meal_order)
@@ -71,7 +78,7 @@ class TestFoodOrdersApp(unittest.TestCase):
     def test_add_meals_to_cart_existing_client_raises_quantity_exception(self):
         self.f.add_meals_to_menu(*self.six_meals)
 
-        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
+        client = [c for c in self.f.clients_list if c.phone_number == '0899999999'][0]
         self.assertEqual(0, client.bill)
         self.assertEqual([], client.shopping_cart)
 
@@ -90,7 +97,7 @@ class TestFoodOrdersApp(unittest.TestCase):
 
         actual = self.f.add_meals_to_shopping_cart('0899999999', **self.food)
         expected = "Client 0899999999 successfully ordered toast, pork, cake for 63.40lv."
-        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
+        client = [c for c in self.f.clients_list if c.phone_number == '0899999999'][0]
         self.assertEqual(expected, actual)
         self.assertEqual(11, test_meal.quantity)
         self.assertEqual(3, len(client.meal_order))
@@ -101,13 +108,11 @@ class TestFoodOrdersApp(unittest.TestCase):
         actual = self.f.add_meals_to_shopping_cart('0899999999', **self.additional_food)
         expected = "Client 0899999999 successfully ordered toast, pork, cake, coffee for 83.00lv."
         self.assertEqual(expected, actual)
-        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
+        client = [c for c in self.f.clients_list if c.phone_number == '0899999999'][0]
         test_meal = [m for m in self.f.menu if m.name == "cake"][0]
         self.assertEqual(4, len(client.shopping_cart))
         self.assertEqual(4, len(client.meal_order))
         self.assertEqual(11, test_meal.quantity)
-
-
 
 
 if __name__ == '__main__':

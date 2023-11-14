@@ -10,15 +10,15 @@ class FoodOrdersApp:
 
     def __init__(self):
         self.menu: List[Meal] = []
-        self.client_list: List[Client] = []
+        self.clients_list: List[Client] = []
 
     def register_client(self, client_phone_number: str):
         """ Creates a client (object) and adds it to the client list. """
-        if client_phone_number in [client.phone_number for client in self.client_list]:
+        if client_phone_number in [client.phone_number for client in self.clients_list]:
             raise Exception("The client has already been registered!")
 
         new_client = Client(client_phone_number)
-        self.client_list.append(new_client)
+        self.clients_list.append(new_client)
 
         return f"Client {client_phone_number} registered successfully."
 
@@ -77,7 +77,7 @@ class FoodOrdersApp:
         return f"Client {client.phone_number} successfully ordered {', '.join(meal.name for meal in client.shopping_cart)} for {client.bill :.2f}lv."
 
     def __get_client(self, number):
-        return [c for c in self.client_list if c.phone_number == number][0]
+        return [c for c in self.clients_list if c.phone_number == number][0]
 
     @staticmethod
     def __reset_meal_quantities(client):
@@ -116,4 +116,4 @@ class FoodOrdersApp:
         return f"Receipt #{self.__get_receipt_id} with total amount of {total_paid :.2f} was successfully paid for {client_phone_number}."
 
     def __str__(self):
-        return f"Food Orders App has {len(self.menu)} meals on the menu and {len(self.client_list)} clients."
+        return f"Food Orders App has {len(self.menu)} meals on the menu and {len(self.clients_list)} clients."

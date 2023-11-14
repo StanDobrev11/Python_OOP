@@ -5,6 +5,7 @@ from project.meals.main_dish import MainDish
 
 f = FoodOrdersApp()
 print(f.register_client("0899999999"))
+# print(f.register_client("not valid"))
 print(f.register_client("0899299999"))
 print(f.register_client("0899959999"))
 print(f.register_client("0899119999"))
@@ -24,7 +25,7 @@ print(f.show_menu())
 food = {"Hummus and Avocado Sandwich": 5,
         "Risotto with Wild Mushrooms": 1,
         "Chocolate and Violets": 4}
-print(f.add_meals_to_shopping_cart('0899999999', **food))
+print(f.add_meals_to_shopping_cart('not valid', **food))
 additional_food = {"Risotto with Wild Mushrooms": 2,
                    "Tortilla with Beef and Pork": 2}
 print(f.add_meals_to_shopping_cart('0899999999', **additional_food))

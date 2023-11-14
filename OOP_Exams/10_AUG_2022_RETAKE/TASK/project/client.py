@@ -24,5 +24,5 @@ class Client:
         else:
             raise ValueError("Invalid phone number!")
 
-    # def __repr__(self):
-    #     return self.phone_number
+    def __repr__(self):
+        return self.phone_number
