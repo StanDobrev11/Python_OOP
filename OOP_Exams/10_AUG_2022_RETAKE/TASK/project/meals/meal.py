@@ -9,10 +9,6 @@ class Meal(ABC):
         self.quantity = quantity  # quantity to be ordered for that meal
 
     @property
-    def type(self):
-        return self.__class__.__name__
-
-    @property
     def name(self) -> str:
         return self.__name
 
@@ -36,8 +32,5 @@ class Meal(ABC):
     def details(self):
         ...
 
-
-class Meall(Meal):
-
-    def details(self):
-        pass
+    # def __repr__(self):
+    #     return f"{self.name}: {self.quantity}"

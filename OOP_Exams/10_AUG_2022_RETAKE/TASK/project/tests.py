@@ -10,40 +10,43 @@ class TestFoodOrdersApp(unittest.TestCase):
     def setUp(self) -> None:
         self.f = FoodOrdersApp()
         self.f.register_client("0899999999")
-        self.french_toast = Starter("French toast", 6.50, 5)
-        self.hummus_and_avocado_sandwich = Starter("Hummus and Avocado Sandwich", 7.90)
-        self.tortilla_with_beef_and_pork = MainDish("Tortilla with Beef and Pork", 12.50, 12)
-        self.risotto_with_wild_mushrooms = MainDish("Risotto with Wild Mushrooms", 15)
-        self.chocolate_cake_with_mascarpone = Dessert("Chocolate Cake with Mascarpone", 4.60, 17)
-        self.chocolate_and_violets = Dessert("Chocolate and Violets", 5.20)
+        self.toast = Starter("toast", 6.50, 5)
+        self.oats = Starter("oats", 7.90)
+        self.pork = MainDish("pork", 12.50, 12)
+        self.beef = MainDish("beef", 15)
+        self.cake = Dessert("cake", 4.60, 17)
+        self.coffee = Dessert("coffee", 5.20)
 
-        self.food = {"Hummus and Avocado Sandwich": 5,
-                     "Risotto with Wild Mushrooms": 1,
-                     "Chocolate and Violets": 4}
+        self.food = {"toast": 5,
+                     "pork": 1,
+                     "cake": 4}
 
-        self.non_ex_food = {"Hummus and Avocado Sandwich": 5,
-                            "Risotto with Wild Mushrooms": 1,
-                            "Chocolate and Violets": 4,
+        self.additional_food = {"cake": 2,
+                                "coffee": 2}
+
+        self.non_ex_food = {"toast": 5,
+                            "pork": 1,
+                            "cake": 4,
                             "Non Existing": 5}
 
-        self.greater_qtity_food = {"Hummus and Avocado Sandwich": 5,
-                                   "Risotto with Wild Mushrooms": 1,
-                                   "Chocolate and Violets": 4,
-                                   "French toast": 10}
+        self.greater_qtity_food = {"beef": 5,
+                                   "pork": 1,
+                                   "cake": 4,
+                                   "toast": 10}
 
         self.four_meals = (
-            self.french_toast,
-            self.hummus_and_avocado_sandwich,
-            self.tortilla_with_beef_and_pork,
-            self.risotto_with_wild_mushrooms,
+            self.toast,
+            self.beef,
+            self.pork,
+            self.cake,
         )
         self.six_meals = (
-            self.french_toast,
-            self.hummus_and_avocado_sandwich,
-            self.tortilla_with_beef_and_pork,
-            self.risotto_with_wild_mushrooms,
-            self.chocolate_cake_with_mascarpone,
-            self.chocolate_and_violets
+            self.toast,
+            self.oats,
+            self.pork,
+            self.beef,
+            self.cake,
+            self.coffee
         )
 
     def test_add_meals_to_shopping_cart_menu_not_ready(self):
@@ -60,34 +63,51 @@ class TestFoodOrdersApp(unittest.TestCase):
             self.f.add_meals_to_shopping_cart('0888888888', **self.non_ex_food)
 
         self.assertEqual("Non Existing is not on the menu!", str(ex.exception))
-        client = self.f.get_registered_client('0888888888')
+        client = [c for c in self.f.client_list if c.phone_number == '0888888888'][0]
         self.assertEqual([], client.shopping_cart)
         self.assertEqual(0, client.bill)
+        self.assertEqual({}, client.meal_order)
 
     def test_add_meals_to_cart_existing_client_raises_quantity_exception(self):
         self.f.add_meals_to_menu(*self.six_meals)
 
-        client = self.f.get_registered_client('0899999999')
+        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
         self.assertEqual(0, client.bill)
         self.assertEqual([], client.shopping_cart)
 
         with self.assertRaises(Exception) as ex:
             self.f.add_meals_to_shopping_cart('0899999999', **self.greater_qtity_food)
-        self.assertEqual("Not enough quantity of Starter: French toast!", str(ex.exception))
+        self.assertEqual("Not enough quantity of Starter: toast!", str(ex.exception))
 
         self.assertEqual(0, client.bill)
         self.assertEqual([], client.shopping_cart)
+        self.assertEqual({}, client.meal_order)
 
     def test_add_meal_to_cart_success(self):
         self.f.add_meals_to_menu(*self.six_meals)
-        test_meal = [m for m in self.f.menu if m.name == "Hummus and Avocado Sandwich"][0]
-        self.assertEqual(60, test_meal.quantity)
+        test_meal = [m for m in self.f.menu if m.name == "pork"][0]
+        self.assertEqual(12, test_meal.quantity)
 
         actual = self.f.add_meals_to_shopping_cart('0899999999', **self.food)
-        expected = "Client 0899999999 successfully ordered Hummus and Avocado Sandwich, Risotto with Wild Mushrooms, Chocolate and Violets for 75.30lv."
-
+        expected = "Client 0899999999 successfully ordered toast, pork, cake for 63.40lv."
+        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
         self.assertEqual(expected, actual)
-        self.assertEqual(55, test_meal.quantity)
+        self.assertEqual(11, test_meal.quantity)
+        self.assertEqual(3, len(client.meal_order))
+
+    def test_add_additional_meal_success(self):
+        self.f.add_meals_to_menu(*self.six_meals)
+        self.f.add_meals_to_shopping_cart('0899999999', **self.food)
+        actual = self.f.add_meals_to_shopping_cart('0899999999', **self.additional_food)
+        expected = "Client 0899999999 successfully ordered toast, pork, cake, coffee for 83.00lv."
+        self.assertEqual(expected, actual)
+        client = [c for c in self.f.client_list if c.phone_number == '0899999999'][0]
+        test_meal = [m for m in self.f.menu if m.name == "cake"][0]
+        self.assertEqual(4, len(client.shopping_cart))
+        self.assertEqual(4, len(client.meal_order))
+        self.assertEqual(11, test_meal.quantity)
+
+
 
 
 if __name__ == '__main__':
