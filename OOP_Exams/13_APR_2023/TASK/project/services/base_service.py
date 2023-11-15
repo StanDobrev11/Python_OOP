@@ -11,6 +11,10 @@ class BaseService(ABC):
         self.robots: List[BaseRobot] = []
 
     @property
+    def kind(self):
+        return self.__class__.__name__
+
+    @property
     def name(self):
         return self.__name
 

@@ -8,3 +8,7 @@ class MaleRobot(BaseRobot):
     @property
     def weight_gain(self):
         return 3
+
+    @property
+    def service(self):
+        return "MainService"

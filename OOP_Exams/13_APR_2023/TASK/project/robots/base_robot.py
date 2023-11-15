@@ -9,6 +9,11 @@ class BaseRobot(ABC):
         self.weight = weight  # the weight in kilograms of the robot
 
     @property
+    @abstractmethod
+    def service(self):
+        ...
+
+    @property
     def name(self):
         return self.__name
 
