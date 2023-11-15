@@ -11,6 +11,7 @@ class Booth(ABC):
         self.delicacy_orders: List[Delicacy] = []
         self.price_for_reservation = 0  # Each time a booth is reserved, the price for a reservation should be set.
         self.is_reserved: bool = False
+        self.price_per_delicacy = 0  # Each time delicacy is ordered should be calculated.
 
     @property
     def capacity(self):
@@ -32,3 +33,10 @@ class Booth(ABC):
         if not self.is_reserved:
             self.price_for_reservation = number_of_people * self.price_per_person
             self.is_reserved = True
+
+    def free_booth(self):
+        """ Sets booth income to 0, resets delicacy orders and sets the reservation to False """
+        self.price_per_delicacy = 0
+        self.price_for_reservation = 0
+        self.delicacy_orders = []
+        self.is_reserved = False
