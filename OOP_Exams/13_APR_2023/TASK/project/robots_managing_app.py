@@ -39,8 +39,12 @@ class RobotsManagingApp:
     def __get_service(self, service_name: str):
         return [s for s in self.services if s.name == service_name][0]
 
-    def __get_robot(self, robot_name: str):
+    def __get_robot_from_managing_app(self, robot_name: str):
         return [r for r in self.robots if r.name == robot_name][0]
+
+    @staticmethod
+    def __get_robot_from_service(robot_name: str, service: BaseService):
+        return [r for r in service.robots if r.name == robot_name][0]
 
     @staticmethod
     def __match_service_and_robot(robot: BaseRobot, service: BaseService):
@@ -54,7 +58,7 @@ class RobotsManagingApp:
     def add_robot_to_service(self, robot_name: str, service_name: str):
         """The method adds the robot with the given name to the service if there is a capacity for that."""
 
-        robot = self.__get_robot(robot_name)
+        robot = self.__get_robot_from_managing_app(robot_name)
         service = self.__get_service(service_name)
 
         if not self.__match_service_and_robot(robot, service):
@@ -70,10 +74,11 @@ class RobotsManagingApp:
     def remove_robot_from_service(self, robot_name: str, service_name: str):
         """The method removes the robot with the given name from the service."""
 
-        robot = self.__get_robot(robot_name)
         service = self.__get_service(service_name)
 
-        if robot not in service.robots:
+        try:
+            robot = self.__get_robot_from_service(robot_name, service)
+        except IndexError:
             raise Exception("No such robot in this service!")
 
         service.robots.remove(robot)
@@ -96,7 +101,7 @@ class RobotsManagingApp:
         service = self.__get_service(service_name)
         total_price = sum(robot.price for robot in service.robots)
 
-        return f"The value of service {service_name} is {total_price}."
+        return f"The value of service {service_name} is {total_price :.2f}."
 
     def __str__(self):
         text = []
