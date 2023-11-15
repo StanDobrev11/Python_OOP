@@ -66,4 +66,41 @@ class RobotsManagingApp:
         self.robots.remove(robot)
         service.robots.append(robot)
         return f"Successfully added {robot_name} to {service_name}."
-  
+
+    def remove_robot_from_service(self, robot_name: str, service_name: str):
+        """The method removes the robot with the given name from the service."""
+
+        robot = self.__get_robot(robot_name)
+        service = self.__get_service(service_name)
+
+        if robot not in service.robots:
+            raise Exception("No such robot in this service!")
+
+        service.robots.remove(robot)
+        self.robots.append(robot)
+        return f"Successfully removed {robot_name} from {service_name}."
+
+    def feed_all_robots_from_service(self, service_name: str):
+        """The method feeds all robots from the service."""
+
+        service = self.__get_service(service_name)
+
+        for robot in service.robots:
+            robot.eating()
+
+        return f"Robots fed: {len(service.robots)}."
+
+    def service_price(self, service_name: str):
+        """The method calculates the price of all robots that are in the service."""
+
+        service = self.__get_service(service_name)
+        total_price = sum(robot.price for robot in service.robots)
+
+        return f"The value of service {service_name} is {total_price}."
+
+    def __str__(self):
+        text = []
+        for service in self.services:
+            text.append(service.details())
+
+        return '\n'.join(text)

@@ -51,3 +51,6 @@ class BaseRobot(ABC):
 
     def eating(self):
         self.weight += self.weight_gain
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}: {self.name}, {self.weight}"
