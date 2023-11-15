@@ -151,8 +151,10 @@ class ConcertTrackerApp:
         return True
 
     # def __can_band_perform_genre(self, band: Band, genre: str):
-    #     required_skills = self.SKILL_SET[genre]
-    #     return all(skill == musician.skills for skill in required_skills for musician in band.members)
+    #     required_skills = set(self.SKILL_SET[genre])
+    #     band_skills = {skill for musician in band.members for skill in musician.skills}
+    #
+    #     return all(skill in band_skills for skill in required_skills)
 
     def __can_band_perform_genre(self, band: Band, genre: str):
         required_skills = set(self.SKILL_SET[genre])
