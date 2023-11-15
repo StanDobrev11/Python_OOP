@@ -20,3 +20,6 @@ class Band:
 
     def __str__(self):
         return f"{self.name} with {len(self.members)} members."
+
+    def __repr__(self):
+        return self.name

@@ -11,6 +11,25 @@ from project.concert import Concert
 class ConcertTrackerApp:
     MUSICIANS = {"Guitarist": Guitarist, "Drummer": Drummer, "Singer": Singer}
 
+    SKILL_SET = {
+        "Rock": {
+            "Drummer": ["play the drums with drumsticks"],
+            "Singer": ["sing high pitch notes"],
+            "Guitarist": ["play rock"]
+        },
+
+        'Metal': {
+            "Drummer": ["play the drums with drumsticks"],
+            "Singer": ["sing low pitch notes"],
+            "Guitarist": ["play metal"]
+        },
+        "Jazz": {
+            "Drummer": ["play the drums with drum brushes"],
+            "Singer": ["sing high pitch notes, sing low pitch notes"],
+            "Guitarist": ["play jazz"]
+        }
+    }
+
     def __init__(self):
         self.bands: List[Band] = []
         self.musicians: List[Musician] = []
@@ -89,3 +108,54 @@ class ConcertTrackerApp:
 
         band.members.append(musician)
         return f"{musician_name} was added to {band_name}."
+
+    def remove_musician_from_band(self, musician_name: str, band_name: str):
+        """The method removes a musician from the band."""
+
+        try:
+            band = self.__get_band_by_name(band_name)
+        except IndexError:
+            raise Exception(f"{band_name} isn't a band!")
+
+        try:
+            musician = [m for m in band.members if m.name == musician_name][0]
+        except IndexError:
+            raise Exception(f"{musician_name} isn't a member of {band_name}!")
+
+        band.members.remove(musician)
+        return f"{musician_name} was removed from {band_name}."
+
+    def is_band_ready(self, band: Band):
+        """checks if the band has at least 1 member of each musician type"""
+        for kind in self.MUSICIANS.keys():
+            if kind not in [type(member).__name__ for member in band.members]:
+                return False
+        return True
+
+    def can_band_perform_genre(self, band: Band, genre: str):
+        skills_needed = self.SKILL_SET[genre]
+        for musician_type, skills in skills_needed.items():
+            for member in band.members:
+                if type(member).__name__ == musician_type:
+                    for skill in skills:
+                        if skill not in member.skills:
+                            return False
+        return True
+
+    def start_concert(self, concert_place: str, band_name: str):
+        """The method is to start a concert at the given place with the given band.
+        The concert place and the band name will always be valid.
+        However, there are some rules for the band to start a concert depending on the band
+        members and the concert type"""
+
+        band = self.__get_band_by_name(band_name)
+        concert = self.__get_concert_by_place(concert_place)
+
+        if not self.is_band_ready(band):
+            raise Exception(f"{band_name} can't start the concert because it doesn't have enough members!")
+
+        if not self.can_band_perform_genre(band, concert.genre):
+            raise Exception(f"The {band_name} band is not ready to play at the concert!")
+
+        profit = concert.audience * concert.ticket_price - concert.expenses
+        return f"{band_name} gained {profit :.2f}$ from the {concert.genre} concert in {concert.place}."

@@ -60,3 +60,6 @@ class Concert:
 
     def __str__(self):
         return f"{self.genre} concert at {self.place}."
+
+    def __repr__(self):
+        return f"{self.genre} at {self.place}"

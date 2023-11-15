@@ -44,3 +44,6 @@ class Musician(ABC):
 
         self.skills.append(new_skill)
         return f"{self.name} learned to {new_skill}."
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}: {self.name}"
