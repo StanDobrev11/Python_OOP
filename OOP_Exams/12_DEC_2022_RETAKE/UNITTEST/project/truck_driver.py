@@ -54,15 +54,20 @@ class TruckDriver:
 
     def sleep(self, mile):
         if mile % 1000 == 0:
-            self.earned_money -= 45
+            self.earned_money -= 45  # 125
 
     def pump_gas(self, mile):
         if mile % 1500 == 0:
-            self.earned_money -= 500
+            self.earned_money -= 500 # 40 + 125 + 500
 
     def repair_truck(self, mile):
         if mile % 10000 == 0:
-            self.earned_money -= 7500
+            self.earned_money -= 7500 # 665 +
 
     def __repr__(self):
         return f"{self.name} has {self.miles} miles behind his back."
+
+
+t = TruckDriver('Ivan', 10)
+t.add_cargo_offer('Varna', 250)
+print()
