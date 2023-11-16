@@ -75,4 +75,26 @@ class BankApp:
         self.clients.remove(client)
         return f"Successfully removed {client.name} with ID {client_id}."
 
-    
+    def increase_loan_interest(self, loan_type: str):
+        """The method increases the interest rates for all loans of the given type
+        that are in the bank’s loan collection."""
+
+        filtered_loans = [loan for loan in self.loans if loan.loan_type == loan_type]
+        for loan in filtered_loans:
+            loan.increase_interest_rate()
+
+        return f"Successfully changed {len(filtered_loans)} loans."
+
+    def increase_clients_interest(self, min_rate: float):
+        """The method increases the interest rates for all clients that are in the bank’s client collection
+        who currently have an interest rate less than the min_rate value."""
+
+        filtered_clients = filter(lambda x: x.interest < min_rate, self.clients)
+        client_count = 0
+        while True:
+            try:
+                client = next(filtered_clients)
+                client.increase_clients_interest()
+                client_count += 1
+            except StopIteration:
+                return f"Number of clients affected: {client_count}."
