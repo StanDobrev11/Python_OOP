@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseLoan(ABC):
-    __INTEREST_RATES_INCREMENT = {"StudentLoan": 0.2, "MortgageLoan": 0.5}
+    __LOAN_INTEREST_RATES_INCREMENT = {"StudentLoan": 0.2, "MortgageLoan": 0.5}
 
     @abstractmethod
     def __init__(self, interest_rate: float, amount: float):
@@ -16,4 +16,4 @@ class BaseLoan(ABC):
     def increase_interest_rate(self):
         """Method increases the loan’s interest rate. Keep in mind that each type of loan implements
         the method differently."""
-        self.interest_rate += self.__INTEREST_RATES_INCREMENT[self.loan_type]
+        self.interest_rate += self.__LOAN_INTEREST_RATES_INCREMENT[self.loan_type]
