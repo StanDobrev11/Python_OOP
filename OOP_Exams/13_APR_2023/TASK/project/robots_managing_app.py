@@ -48,7 +48,7 @@ class RobotsManagingApp:
 
     @staticmethod
     def __match_service_and_robot(robot: BaseRobot, service: BaseService):
-        if service.kind == robot.service:
+        if service.loan_type == robot.service:
             return True
 
     @staticmethod
