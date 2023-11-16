@@ -58,5 +58,7 @@ class User:
         else:
             self.rating -= 2
 
+        self.is_blocked = True
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} Driving license: {self.driving_license_number} Rating: {self.rating}"
