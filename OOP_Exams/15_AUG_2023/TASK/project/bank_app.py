@@ -17,6 +17,7 @@ class BankApp:
         self.capacity = capacity  # The number of clients а Bank can have.
         self.loans: List[BaseLoan] = []
         self.clients: List[BaseClient] = []
+        self.granted_loans = []
 
     def add_loan(self, loan_type: str):
         """The method creates a loan of the given type and adds it to the loans' collection."""
@@ -58,6 +59,7 @@ class BankApp:
         self.__match_loan_to_client(loan, client)
 
         self.loans.remove(loan)
+        self.granted_loans.append(loan)
         client.loans.append(loan)
         return f"Successfully granted {loan_type} to {client.name} with ID {client_id}."
 
@@ -98,3 +100,19 @@ class BankApp:
                 client_count += 1
             except StopIteration:
                 return f"Number of clients affected: {client_count}."
+
+    def get_statistics(self):
+        """Returns information about the bank’s loans and its clients. Each string is on a new line."""
+        try:
+            avg_client_interest_rate = sum(client.interest for client in self.clients) / len(self.clients)
+        except ZeroDivisionError:
+            avg_client_interest_rate = 0
+
+        text = (
+            f"Active Clients: {len(self.clients)}\nTotal Income: {sum(client.income for client in self.clients) :.2f}\n"
+            f"Granted Loans: {len(self.granted_loans)}, Total Sum: {sum(loan.amount for loan in self.granted_loans) :.2f}\n"
+            f"Available Loans: {len(self.loans)}, Total Sum: {sum(loan.amount for loan in self.loans) :.2f}\n"
+            f"Average Client Interest Rate: {avg_client_interest_rate :.2f}"
+        )
+
+        return text
