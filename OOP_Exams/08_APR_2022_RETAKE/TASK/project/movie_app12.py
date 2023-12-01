@@ -66,7 +66,7 @@ class MovieApp:
             self.movies_collection.pop(self.movies_collection.index(movie))
             for user in self.users_collection:
                 if user.username == username:
-                    user.movies_owned.pop(user.movies_owned.index(movie))
+                    user.movies_owned.pop
                     return f'{username} successfully deleted {movie.title} movie.'
 
     def like_movie(self, username, movie):
@@ -88,7 +88,7 @@ class MovieApp:
             movie.likes -= 1
             for user in self.users_collection:
                 if user.username == username:
-                    user.movies_liked.pop(user.movies_liked.index(movie))
+                    user.movies_liked.pop
             return f'{username} disliked {movie.title} movie.'
 
     def display_movies(self):

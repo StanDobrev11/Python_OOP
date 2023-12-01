@@ -44,13 +44,13 @@ class ManagingApp:
         filtered_routes = [r for r in self.routes if r.details == (start_point, end_point)]
 
         for route in filtered_routes:
-            if route.length < length:
+            if route.__length < length:
                 return f"{start_point}/{end_point} shorter route had already been added to our platform."
 
-            elif route.length == length:
+            elif route.__length == length:
                 return f"{start_point}/{end_point} - {length} km had already been added to our platform."
 
-            elif route.length > length:
+            elif route.__length > length:
                 route.is_locked = True
 
         route_id = len(self.routes) + 1
@@ -75,7 +75,7 @@ class ManagingApp:
         if route.is_locked:
             return f"Route {route_id} is locked! This trip is not allowed."
 
-        vehicle.drive(route.length)
+        vehicle.drive(route.__length)
 
         if is_accident_happened:
             vehicle.change_status()

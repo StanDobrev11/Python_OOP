@@ -43,7 +43,7 @@ class Astronaut(ABC):
     def explore(self, planet: Planet):
         while self.oxygen > 0:
             try:
-                item = planet.items.pop()  # takes item found on planet
+                item = planet.items.pop  # takes item found on planet
                 self.backpack.append(item)  # places item in backpack
                 self.breathe()  # takes a breath when finds item and reduces oxygen
             except IndexError:
